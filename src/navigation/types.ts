@@ -1,0 +1,10 @@
+export type BottomStackParamList = {
+    vocabulary: undefined,
+    kanji : undefined,
+    grammar : undefined,
+    study : undefined,
+    setting : undefined,
+}
+export type AppStackParamList = {
+    main : undefined
+}
