@@ -5,8 +5,10 @@ import RootNavigator from "./src/navigation/app_navigation.tsx";
 // import AppStateChange from "./src/app/app_state_change.tsx";
 import {I18nextProvider} from "react-i18next";
 import i18n from './src/i18n';
+
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
+
 
   return (
     <GestureHandlerRootView style={styles.container}>
