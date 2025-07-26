@@ -34,7 +34,6 @@ local.properties
 *.keystore
 !debug.keystore
 .kotlin/
-
 # node.js
 #
 node_modules/
@@ -73,3 +72,6 @@ yarn-error.log
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# Ignore local data folder
+/src/assets/data/

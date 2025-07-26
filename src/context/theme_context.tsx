@@ -1,62 +1,50 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { useColorScheme } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ThemeType } from '../types';
-import {
-    lightTheme,
-    purpleDarkTheme,
-    purpleLightTheme,
-    themes,
-} from '../theme/themes';
-import { getRealm } from '../realm';
-import { ThemeSetting } from '../realm/schema/theme_schema.ts';
-import {changeTheme} from "../realm/service/theme_service.ts";
+import { themes } from '../theme/themes';
 
 type ThemeContextType = {
-    theme: ThemeType;
+    theme: ThemeType['light'];
     setThemeId: (id: string) => void;
     themeId: string;
 };
 
-const THEME_ID_KEY = 'app_theme';
-
 export const Theme_context = createContext<ThemeContextType>({
-    theme: lightTheme,
+    theme: themes.default.light,
     setThemeId: () => {},
-    themeId: 'light',
+    themeId: 'default',
 });
 
+const THEME_STORAGE_KEY = 'app_theme';
+
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-    const systemScheme = useColorScheme();
-    const [themeId, setThemeIdState] = useState<string>('light');
+    const systemScheme = useColorScheme(); // 'light' | 'dark'
+    const [themeId, setThemeIdState] = useState<string>('default');
 
     useEffect(() => {
-        const openAndLoadTheme = async () => {
+        const fetchTheme = async () => {
             try {
-                const realm = getRealm();
-                const stored = realm.objectForPrimaryKey<ThemeSetting>('ThemeSetting', THEME_ID_KEY);
-                if (stored) {
-                    setThemeIdState(stored.value);
-                }
-            } catch (e) {
-                console.warn('Failed to open Realm or load theme:', e);
+                const savedId = await AsyncStorage.getItem(THEME_STORAGE_KEY);
+                if (savedId) setThemeIdState(savedId);
+            } catch (err) {
+                console.warn('Lỗi đọc AsyncStorage:', err);
             }
         };
-
-        openAndLoadTheme();
-
+        fetchTheme();
     }, []);
 
-    const setThemeId = (id: string) => {
-        setThemeIdState(id);
-        changeTheme(id)
+    const setThemeId = async (id: string) => {
+        try {
+            await AsyncStorage.setItem(THEME_STORAGE_KEY, id);
+            setThemeIdState(id);
+        } catch (err) {
+            console.warn('Lỗi lưu AsyncStorage:', err);
+        }
     };
 
-    const theme = (() => {
-        if (themeId === 'purple') {
-            return systemScheme === 'dark' ? purpleDarkTheme : purpleLightTheme;
-        }
-        return themes.find((t) => t.id === themeId) || lightTheme;
-    })();
+    const selectedTheme = themes[themeId] ?? themes.default;
+    const theme = systemScheme === 'dark' ? selectedTheme.dark : selectedTheme.light;
 
     return (
         <Theme_context.Provider value={{ theme, setThemeId, themeId }}>
@@ -64,4 +52,3 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         </Theme_context.Provider>
     );
 };
-

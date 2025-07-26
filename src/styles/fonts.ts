@@ -1,3 +1,5 @@
+import {Dimensions} from "react-native";
+
 const FONTS = {
     THIN: 'RobotoMono-Thin',
     THIN_ITALIC: 'RobotoMono-ThinItalic',
@@ -23,5 +25,5 @@ const FONT_SIZE = {
     XL: 22,
     XXL: 28,
 };
-
+export const { width, height } = Dimensions.get('window');
 export { FONTS, FONT_SIZE };

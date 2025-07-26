@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
-import {useTranslation} from "react-i18next";
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import { BottomStackParamList} from "../types.ts";
@@ -10,33 +9,39 @@ import KanjiScreen from "./kanji.tsx";
 import GrammarScreen from "./grammar.tsx";
 import StudyScreen from "./study.tsx";
 import SettingScreen from "./setting.tsx";
-import {useAppTheme} from "../../hooks/useTheme.ts";
-import {FONTS} from "../../styles";
+import {FONTS, PADDING, RADIUS, width} from "../../styles";
+import {useTranslation} from "react-i18next";
+import IconVocabulary from "../../assets/svgs/ic_vocabulary.tsx";
+import IconGrammar from "../../assets/svgs/ic_grammar.tsx";
+import IconStudy from "../../assets/svgs/icon_study.tsx";
+import IconKanji from "../../assets/svgs/ic_kanji.tsx";
+import {useAppTheme} from "../../hooks";
 
 
 const Tab = createBottomTabNavigator<BottomStackParamList>();
 
 const BottomNavigation = () => {
-    const {t} = useTranslation();
     const bottomNavHeight = 80;
-    const {theme} = useAppTheme()
+    const {theme} = useAppTheme();
+    const {t} = useTranslation();
     return (
         <Tab.Navigator
             screenOptions={({route}) => ({
                 tabBarIcon: ({focused}) => {
+                    const color = focused ? theme.activeColor : theme.textSecondary
                     let IconComponent;
                     switch (route.name) {
                         case 'vocabulary':
-                            IconComponent = IconSetting;
+                            IconComponent = IconVocabulary;
                             break;
                         case 'kanji':
-                            IconComponent = IconSetting;
+                            IconComponent = IconKanji;
                             break;
                         case 'grammar':
-                            IconComponent = IconSetting;
+                            IconComponent = IconGrammar;
                             break;
                         case 'study':
-                            IconComponent = IconSetting;
+                            IconComponent = IconStudy;
                             break;
                         case 'setting':
                             IconComponent = IconSetting;
@@ -46,23 +51,29 @@ const BottomNavigation = () => {
                     }
 
                     return (
+                        <View style={{
+                            width : width/5,
+                            justifyContent : 'center',
+                            alignItems : 'center'
+                        }}>
                         <View
                             style={[
                                 styles.iconWrapper,
                                 focused && {
-                                    backgroundColor: theme.colors.background,
-                                    elevation: 8,
+                                    backgroundColor: theme.primary,
                                 },
                             ]}>
-                            <IconComponent color={theme.colors.blockColorSecondary} />
+                            <IconComponent color={color} />
+                        </View>
+
                             <Text
                                 style={{
-                                    fontSize: 10,
-                                    color: focused ? theme.colors.textPrimary : theme.colors.textSecondary,
-                                    marginTop: 8,
-                                    fontFamily : FONTS.REGULAR
+                                    fontSize: 11,
+                                    color: color,
+                                    marginTop: 4,
+                                    fontFamily : FONTS.SEMIBOLD
                                 }}>
-                                {t(`bottomNavigation.${route.name}`)}
+                                {t(`bottom_navigation.${route.name}`)}
                             </Text>
                         </View>
                     );
@@ -72,7 +83,7 @@ const BottomNavigation = () => {
                 tabBarStyle: {
                     height: bottomNavHeight,
                     paddingTop: 20,
-                    backgroundColor: theme.colors.background,
+                    backgroundColor: 'white',
                 },
             })}>
             <Tab.Screen name="vocabulary" children={() => <VocabularyScreen />} />
@@ -86,10 +97,9 @@ const BottomNavigation = () => {
 
 const styles = StyleSheet.create({
     iconWrapper: {
-        padding: 6,
-        width: 50,
-        height: 60,
-        borderRadius: 8,
+        padding: PADDING.XS,
+        borderRadius: RADIUS.ROUND,
+        width : 60,
         alignItems: 'center',
         justifyContent: 'center',
     },

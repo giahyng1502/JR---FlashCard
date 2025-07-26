@@ -1,76 +1,67 @@
 import {ThemeType} from "../types";
 
-export const darkTheme: ThemeType = {
-    id: 'dark',
-    name: 'Dark',
-    mode: 'dark',
-    colors: {
-        background: '#121212',
-        primary: '#bb86fc',
-        secondary: '#1e1e1e',
-        textPrimary: '#ffffff',
-        textSecondary: '#cccccc',
-        borderColor: '#333333',
-        searchPrimary: '#1a1a1a',
-        blockColorPrimary: '#1f1f1f',
-        blockColorSecondary: '#292929',
+
+export const defaultTheme: ThemeType = {
+    id: "default",
+    name: "Default Theme",
+    light: {
+        background: "#ffffff",
+        primary: "#DAEFFF",
+        secondary: "#f5f5f5",
+        textPrimary: "#000000",
+        textSecondary: "#555555",
+        activeColor : "#0c3d56",
+        borderColor: "#ddd",
+        searchPrimary: "#eeeeee",
+        blockColorPrimary: "#ffffff",
+        blockColorSecondary: "#f0f0f0",
+    },
+    dark: {
+        background: "#121212",
+        primary: "#bb86fc",
+        secondary: "#1e1e1e",
+        activeColor : "#121c2d",
+        textPrimary: "#ffffff",
+        textSecondary: "#cccccc",
+        borderColor: "#333333",
+        searchPrimary: "#1a1a1a",
+        blockColorPrimary: "#1f1f1f",
+        blockColorSecondary: "#292929",
     },
 };
 
-export const purpleLightTheme: ThemeType = {
-    id: 'purpleLight',
-    name: 'Purple Light',
-    mode: 'light',
-    colors: {
-        background: '#f8f0fc',
-        primary: '#9c27b0',
-        secondary: '#f3e5f5',
-        textPrimary: '#2d0d39',
-        textSecondary: '#6a1b9a',
-        borderColor: '#d1c4e9',
-        searchPrimary: '#ede7f6',
-        blockColorPrimary: '#f3e5f5',
-        blockColorSecondary: '#e1bee7',
+export const blueTheme: ThemeType = {
+    id: "blue",
+    name: "Blue Theme",
+    light: {
+        background: "#e3f2fd",
+        primary: "#2196f3",
+        secondary: "#bbdefb",
+        textPrimary: "#0d47a1",
+        activeColor : "#0c3d56",
+        textSecondary: "#1976d2",
+        borderColor: "#90caf9",
+        searchPrimary: "#e1f5fe",
+        blockColorPrimary: "#bbdefb",
+        blockColorSecondary: "#90caf9",
     },
-};
-export const lightTheme: ThemeType = {
-    id: 'light',
-    name: 'Light',
-    mode: 'light',
-    colors: {
-        background: '#ffffff',
-        primary: '#6200ee',
-        secondary: '#f5f5f5',
-        textPrimary: '#000000',
-        textSecondary: '#555555',
-        borderColor: '#ddd',
-        searchPrimary: '#eeeeee',
-        blockColorPrimary: '#ffffff',
-        blockColorSecondary: '#f0f0f0',
+    dark: {
+        background: "#0d47a1",
+        primary: "#2196f3",
+        secondary: "#1a237e",
+        activeColor : "#0c3d56",
+        textPrimary: "#ffffff",
+        textSecondary: "#90caf9",
+        borderColor: "#1976d2",
+        searchPrimary: "#1565c0",
+        blockColorPrimary: "#1e88e5",
+        blockColorSecondary: "#42a5f5",
     },
 };
 
-export const purpleDarkTheme: ThemeType = {
-    id: 'purpleDark',
-    name: 'Purple Dark',
-    mode: 'dark',
-    colors: {
-        background: '#121212',
-        primary: '#9c27b0',
-        secondary: '#1f1f1f',
-        textPrimary: '#ffffff',
-        textSecondary: '#cccccc',
-        borderColor: '#333',
-        searchPrimary: '#1d1d1d',
-        blockColorPrimary: '#4a148c',
-        blockColorSecondary: '#7b1fa2',
-    },
-};
 
 // Danh sách tất cả theme
-export const themes: ThemeType[] = [
-    lightTheme,
-    darkTheme,
-    purpleLightTheme,
-    purpleDarkTheme,
-];
+export const themes: Record<string, ThemeType> = {
+    default: defaultTheme,
+    blue: blueTheme,
+};

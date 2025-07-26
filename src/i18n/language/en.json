@@ -1,0 +1,9 @@
+{
+  "bottom_navigation" : {
+    "vocabulary" : "Vocabulary",
+    "kanji" : "Kanji",
+    "grammar" : "Grammar",
+    "study" : "Study",
+    "setting" : "Settings"
+  }
+}
