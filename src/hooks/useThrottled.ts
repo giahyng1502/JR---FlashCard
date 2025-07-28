@@ -1,25 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
+// hooks/useThrottle.ts
+import { useCallback, useRef } from 'react';
 
-export function useThrottled<T>(value: T, delay: number): T {
-    const [throttledValue, setThrottledValue] = useState(value);
-    const lastExecuted = useRef(Date.now());
+export const useThrottle = (callback: () => void, delay: number) => {
+    const lastCall = useRef(0);
 
-    useEffect(() => {
+    return useCallback(() => {
         const now = Date.now();
-        const remaining = delay - (now - lastExecuted.current);
-
-        if (remaining <= 0) {
-            lastExecuted.current = now;
-            setThrottledValue(value);
-        } else {
-            const timeout = setTimeout(() => {
-                lastExecuted.current = Date.now();
-                setThrottledValue(value);
-            }, remaining);
-
-            return () => clearTimeout(timeout);
+        if (now - lastCall.current >= delay) {
+            lastCall.current = now;
+            callback();
         }
-    }, [value, delay]);
-
-    return throttledValue;
-}
+    }, [callback, delay]);
+};

@@ -10,7 +10,7 @@ type ThemeContextType = {
     themeId: string;
 };
 
-export const Theme_context = createContext<ThemeContextType>({
+export const  Theme_context = createContext<ThemeContextType>({
     theme: themes.default.light,
     setThemeId: () => {},
     themeId: 'default',

@@ -1,8 +1,6 @@
 import React, {useEffect} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {
-    getVocabularyDetailByWord,
-    searchVocabularyByFuriganaPrefixAndLevel,
     searchVocabularyByKeywordAndPOS
 } from "../../realm/service";
 
@@ -11,7 +9,7 @@ const VocabularyScreen = () => {
 
     const loadData = async () => {
         try {
-            const data = searchVocabularyByKeywordAndPOS("Nhà hàng","Danh từ")
+            const data = searchVocabularyByKeywordAndPOS("Bài học","Danh từ")
             console.log(data);
         } catch (error) {
             console.error('Lỗi khi load dữ liệu Realm:', error);

@@ -1,8 +1,9 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from "@react-navigation/stack";
-import {AppStackParamList} from "./types.ts";
 import BottomNavigation from "./tab/bottom_navigation.tsx";
+import {AppStackParamList} from "./param_type";
+import KanjiDetail from "../screen/kanji_detail/kanji_detail.tsx";
 
 const AppStack = createStackNavigator<AppStackParamList>();
 
@@ -30,6 +31,7 @@ const AppStackScreen = () => (
             },
         }}>
         <AppStack.Screen name="main" component={BottomNavigation} />
+        <AppStack.Screen name="kanji_detail" component={KanjiDetail} />
     </AppStack.Navigator>
 );
 

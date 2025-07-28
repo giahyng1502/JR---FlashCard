@@ -1,8 +1,9 @@
 import {getCachedRealm} from "./save_data_to_local.ts";
-import {JLPT_LEVELS} from "../../types";
+import {JLPTLevel} from "../../types";
 
+const JLPT_LEVELS: JLPTLevel[] = ['N1', 'N2', 'N3', 'N4', 'N5'];
 
-export const searchAllGrammarLevels = (keyword: string) => {
+const searchAllGrammarLevels = (keyword: string) => {
     const results: any[] = [];
 
     for (const level of JLPT_LEVELS) {
@@ -30,3 +31,5 @@ export const searchAllGrammarLevels = (keyword: string) => {
 
     return results;
 };
+
+export {searchAllGrammarLevels}

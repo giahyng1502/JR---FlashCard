@@ -16,7 +16,15 @@ import {JLPTLevel} from "../../types";
 
 
 const realmCache: Record<string, Realm> = {};
-
+export const KANJI = "kanji"
+export const KANJI_DETAIL = "kanji_detail"
+export const LEVELS = {
+    N1: 'N1',
+    N2: 'N2',
+    N3: 'N3',
+    N4: 'N4',
+    N5: 'N5',
+}
 /**
  * Preload toàn bộ Realm vào bộ nhớ cache
  */
@@ -75,7 +83,7 @@ export const preloadAllRealms = async () => {
  */
 export const getCachedRealm = (
     type: 'grammar' | 'kanji',
-    level: JLPTLevel
+    level: string
 ): Realm => {
     const key = `${type}_${level}`;
     const realm = realmCache[key];

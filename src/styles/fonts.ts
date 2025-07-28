@@ -18,12 +18,14 @@ const FONTS = {
 };
 
 const FONT_SIZE = {
+    X : 10,
     XS: 12,
     SM: 14,
     MD: 16,
     LG: 18,
     XL: 22,
     XXL: 28,
+    XXXL : 50
 };
 export const { width, height } = Dimensions.get('window');
 export { FONTS, FONT_SIZE };

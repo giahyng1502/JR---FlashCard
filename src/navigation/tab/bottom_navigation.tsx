@@ -2,7 +2,7 @@ import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import { BottomStackParamList} from "../types.ts";
+import { BottomStackParamList} from "../param_type.d.ts";
 import IconSetting from "../../assets/svgs/ic_setting.tsx";
 import VocabularyScreen from "./vocabulary.tsx";
 import KanjiScreen from "./kanji.tsx";

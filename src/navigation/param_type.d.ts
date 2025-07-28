@@ -7,4 +7,8 @@ export type BottomStackParamList = {
 }
 export type AppStackParamList = {
     main : undefined
+    kanji_detail : {
+        character : string,
+    }
 }
+

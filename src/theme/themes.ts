@@ -12,7 +12,7 @@ export const defaultTheme: ThemeType = {
         textSecondary: "#555555",
         activeColor : "#0c3d56",
         borderColor: "#ddd",
-        searchPrimary: "#eeeeee",
+        searchPrimary: "rgba(120,120,128,0.16)",
         blockColorPrimary: "#ffffff",
         blockColorSecondary: "#f0f0f0",
     },
