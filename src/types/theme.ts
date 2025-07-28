@@ -1,5 +1,5 @@
 
-type ThemeColors  = {
+export type ThemeColors  = {
     background: string;
     primary: string;
     secondary: string;

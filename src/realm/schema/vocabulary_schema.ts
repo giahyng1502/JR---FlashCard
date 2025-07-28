@@ -34,7 +34,7 @@ const ExampleSchema : ObjectSchema = {
 };
 
 const VocabularyDetailSchema : ObjectSchema = {
-  name: "Vocabulary",
+    name: "VocabularyDetail",
   primaryKey: "word",
   properties: {
     word: "string",

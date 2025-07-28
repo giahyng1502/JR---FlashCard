@@ -75,3 +75,4 @@ yarn-error.log
 
 # Ignore local data folder
 /src/assets/data/
+app/src/assets/data/*.realm

@@ -1,96 +1,91 @@
-import Realm from "realm";
+import {getStaticRealm} from "./save_data_to_local.ts";
 
-import {
-    GrammarSchema,
-    ExampleGrammarSchema,
-    VocabularySchema,
-    VocabularyDetailSchema,
-    SegmentSchema,
-    ExampleSchema,
-    KanjiSimpleSchema,
-    KanjiDetailSchema,
-    RelatedWordSchema,
-} from '../schema';
-import { getRealmFromFile } from './open_schema';
 
-type JLPTLevel = 'N1' | 'N2' | 'N3' | 'N4' | 'N5';
+export const searchAllVocabulary = (keyword: string) => {
+    try {
+        const realm = getStaticRealm('vocab');
+        const matches = realm
+            .objects('Vocabulary')
+            .filtered(
+                'word CONTAINS[c] $0 OR meaning CONTAINS[c] $0 OR meaning_vi CONTAINS[c] $0 OR furigana CONTAINS[c] $0 OR romaji CONTAINS[c] $0',
+                keyword
+            );
 
-const realmCache: Record<string, Realm> = {};
-
-/**
- * Preload toàn bộ Realm vào bộ nhớ cache
- */
-export const preloadAllRealms = async () => {
-    const levels: JLPTLevel[] = ['N5','N4','N3','N2','N1'];
-
-    for (const level of levels) {
-        try {
-            // Grammar theo cấp độ
-            const grammarRealm = await getRealmFromFile(`data/grammar_${level}.realm`, [
-                GrammarSchema,
-                ExampleGrammarSchema,
-            ]);
-            realmCache[`grammar_${level}`] = grammarRealm;
-            console.log(`✅ Đã load grammar_${level}`);
-        } catch (err) {
-            console.warn(`⚠️ Không thể load grammar_${level}:`, err.message);
-        }
-
-        try {
-            // Kanji theo cấp độ
-            const kanjiRealm = await getRealmFromFile(`data/kanji_${level}.realm`, [
-                KanjiSimpleSchema,
-            ]);
-            realmCache[`kanji_${level}`] = kanjiRealm;
-            console.log(`✅ Đã load kanji_${level}`);
-        } catch (err) {
-            console.warn(`⚠️ Không thể load kanji_${level}:`, err.message);
-        }
+        return matches.map((item: any) => item.toJSON());
+    } catch (err) {
+        console.error("Lỗi khi tìm kiếm từ vựng:", err);
+        return [];
     }
+};
+export const searchVocabularyByKeywordAndPOS = (
+    keyword: string,
+    posKeyword: string,
+    offset: number = 0,
+    limit: number = 50
+) => {
+    try {
+        const realm = getStaticRealm('vocab');
 
-    // Vocabulary tổng hợp
-    const vocabRealm = await getRealmFromFile(`data/vocab.realm`, [VocabularySchema]);
-    realmCache['vocab'] = vocabRealm;
+        let query = '';
+        const args: string[] = [];
 
-    // Vocabulary chi tiết
-    const vocabDetailRealm = await getRealmFromFile(`data/vocabulary_detail.realm`, [
-        VocabularyDetailSchema,
-        SegmentSchema,
-        ExampleSchema,
-    ]);
-    realmCache['vocab_detail'] = vocabDetailRealm;
+        if (keyword.trim()) {
+            query += '(word CONTAINS[c] $0 OR meaning CONTAINS[c] $0 OR meaning_vi CONTAINS[c] $0 OR furigana CONTAINS[c] $0 OR romaji CONTAINS[c] $0)';
+            args.push(keyword);
+        }
 
-    // Kanji chi tiết
-    const kanjiDetailRealm = await getRealmFromFile(`data/kanji_detail.realm`, [
-        KanjiDetailSchema,
-        RelatedWordSchema,
-    ]);
-    realmCache['kanji_detail'] = kanjiDetailRealm;
+        if (posKeyword.trim()) {
+            if (query) query += ' AND ';
+            query += '(pos CONTAINS[c] $' + args.length + ' OR pos_vi CONTAINS[c] $' + args.length + ')';
+            args.push(posKeyword);
+        }
 
-    console.log('✅ Đã preload toàn bộ Realm vào cache.');
+        const results = realm.objects('Vocabulary').filtered(query, ...args);
+
+        // Phân trang: lấy từ offset, giới hạn limit
+        return results.slice(offset, offset + limit).map((item: any) => item.toJSON());
+    } catch (err) {
+        console.error("Lỗi khi tìm kiếm từ vựng:", err);
+        return [];
+    }
 };
 
-/**
- * Lấy Realm đã cache sẵn
- */
-export const getCachedRealm = (
-    type: 'grammar' | 'kanji',
-    level: JLPTLevel
-): Realm => {
-    const key = `${type}_${level}`;
-    const realm = realmCache[key];
-    if (!realm) throw new Error(`❌ Realm chưa được preload: ${key}`);
-    return realm;
+
+export const searchVocabularyByFuriganaPrefixAndLevel = (prefix: string, level?: number) => {
+    try {
+        const realm = getStaticRealm('vocab');
+
+        let query = 'furigana BEGINSWITH[c] $0';
+        const args: any[] = [prefix];
+
+        if (level !== undefined) {
+            query += ' AND level == $1';
+            args.push(level);
+        }
+
+        const matches = realm.objects('Vocabulary').filtered(query, ...args);
+
+        return matches.map((item: any) => item.toJSON());
+    } catch (err) {
+        console.error("Lỗi khi tìm kiếm furigana theo level:", err);
+        return [];
+    }
 };
 
-/**
- * Lấy Realm không phân cấp độ
- */
-export const getStaticRealm = (
-    key: 'vocab' | 'vocab_detail' | 'kanji_detail'
-): Realm => {
-    const realm = realmCache[key];
-    console.log(realmCache)
-    if (!realm) throw new Error(`❌ Realm chưa được preload: ${key}`);
-    return realm;
-};
+
+export const getVocabularyDetailByWord = (word: string) => {
+    try {
+        const realm = getStaticRealm('vocab_detail');
+
+        const item = realm.objectForPrimaryKey('VocabularyDetail', word);
+
+        if (item) {
+            return item.toJSON();
+        }
+
+        return null;
+    } catch (err) {
+        console.error(`Lỗi khi lấy chi tiết từ vựng '${word}':`, err);
+        return null;
+    }
+}
