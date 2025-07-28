@@ -6,19 +6,19 @@ import RootNavigator from "./src/navigation/app_navigation.tsx";
 import {I18nextProvider} from "react-i18next";
 import i18n from './src/i18n';
 
+
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
-
   return (
-    <GestureHandlerRootView style={styles.container}>
-      <ThemeProvider>
-        <I18nextProvider i18n={i18n}>
-        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <RootNavigator/>
-        </I18nextProvider>
-      </ThemeProvider>
-    </GestureHandlerRootView>
+          <GestureHandlerRootView style={styles.container}>
+            <ThemeProvider>
+              <I18nextProvider i18n={i18n}>
+                <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+                <RootNavigator />
+              </I18nextProvider>
+            </ThemeProvider>
+          </GestureHandlerRootView>
   );
 }
 

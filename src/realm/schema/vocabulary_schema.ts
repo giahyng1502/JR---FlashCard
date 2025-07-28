@@ -1,5 +1,5 @@
 import { ObjectSchema } from "realm";
-const VocabularySchema : ObjectSchema = {
+const VocabularySchema = {
   name: "Vocabulary",
   primaryKey: "word",
   properties: {
