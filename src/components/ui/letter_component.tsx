@@ -26,6 +26,9 @@ type Props = {
 
 const HiraganaListComponent = ({ currentLetter, onLetterChange }: Props) => {
     const {theme} = useAppTheme();
+    const handleLetterChange = (letter: string) => {
+        letter === currentLetter ? onLetterChange("") : onLetterChange(letter);
+    }
     const renderLetter = (letter: string) => {
         return (
             <TouchableOpacity
@@ -37,7 +40,7 @@ const HiraganaListComponent = ({ currentLetter, onLetterChange }: Props) => {
                         borderColor: theme.borderColor,
                     },
                 ]}
-                onPress={() => onLetterChange(letter)}
+                onPress={()=>handleLetterChange(letter)}
             >
                 <TextComponent size={18} weight="bold">
                     {letter}

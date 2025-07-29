@@ -1,38 +1,25 @@
-import React, {useCallback} from 'react';
-import {FlatList} from 'react-native';
-import {ExamplesGrammar} from "../../models";
-import ExampleItem from "./example_item.tsx";
+import React from 'react';
+import { ScrollView, View } from 'react-native';
+import { ExamplesGrammar } from '../../models';
+import ExampleItem from './example_item.tsx';
+
 type Props = {
-    items: ExamplesGrammar[],
-    headerComponent: React.FC
-}
+    items: ExamplesGrammar[];
+    headerComponent: React.FC;
+};
 
-const GrammarList = ({ items ,headerComponent}: Props) => {
-    const renderItem = useCallback(
-        ({ item,index }: { item: ExamplesGrammar,index : number }) => (
-            <ExampleItem item={item} index={index}/>
-        ),
-        []
-    );
-
-    const keyExtractor = useCallback(
-        (item: ExamplesGrammar, index: number) => `${index}_${item.jp}`,
-        []
-    );
-
+const GrammarList = ({ items, headerComponent: HeaderComponent }: Props) => {
     return (
-        <FlatList
-            data={items}
-            renderItem={renderItem}
-            keyExtractor={keyExtractor}
-            ListHeaderComponent={headerComponent}
-            contentContainerStyle={{
-                marginBottom : 100
-            }}
+        <ScrollView
+            contentContainerStyle={{ paddingBottom: 100 }}
             showsVerticalScrollIndicator={false}
-        />
+        >
+            <HeaderComponent />
+            {items.map((item, index) => (
+                <ExampleItem key={`${index}_${item.jp}`} item={item} index={index} />
+            ))}
+        </ScrollView>
     );
 };
 
 export default GrammarList;
-

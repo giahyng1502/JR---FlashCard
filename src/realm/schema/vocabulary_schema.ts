@@ -35,11 +35,11 @@ const ExampleSchema : ObjectSchema = {
 
 const VocabularyDetailSchema : ObjectSchema = {
     name: "VocabularyDetail",
-  primaryKey: "word",
-  properties: {
-    word: "string",
-    examples: "ExampleVocabulary[]",
-  },
+    primaryKey: "word",
+    properties: {
+      word: "string",
+      examples: "ExampleVocabulary[]",
+    },
 };
 
 export {VocabularySchema, SegmentSchema, ExampleSchema,VocabularyDetailSchema};

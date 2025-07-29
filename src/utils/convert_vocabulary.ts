@@ -1,4 +1,4 @@
-import {Kanji, Vocabulary} from "../models";
+import {ExampleVocabulary, Segment, Vocabulary, VocabularyDetail} from "../models";
 
 export function parseVocabularies(rawList: any[]): Vocabulary[] {
     return rawList.map((raw) => ({
@@ -12,3 +12,22 @@ export function parseVocabularies(rawList: any[]): Vocabulary[] {
         pos_vi : raw.pos_vi,
     }));
 }
+
+export function parseVocabularyDetail(raw : any): VocabularyDetail {
+    return  ({
+        word: raw.word,
+        examples: raw.examples.map((example: ExampleVocabulary) => {
+            return {
+                en : example.en,
+                vi : example.vi,
+                segments : example.segments.map((segment: Segment) => {
+                    return {
+                        furigana : segment.furigana,
+                        unlinked : segment.unlinked,
+                    }
+                }),
+            }
+        }),
+    });
+}
+

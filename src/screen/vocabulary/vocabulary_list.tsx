@@ -3,16 +3,26 @@ import { View, Text, StyleSheet } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { Vocabulary } from '../../models';
 import VocabularyItem from "./vocabulary_item.tsx";
+import {useNavigation} from "@react-navigation/native";
+import {MainNavigationProp, NameScreenProp} from "../../navigation";
 
 type Props = {
     vocabs: Vocabulary[];
 };
 
 const VocabularyList = ({ vocabs }: Props) => {
-    console.log(vocabs.length);
+
+    const navigation = useNavigation<MainNavigationProp>();
+
+    const handleVocabDetail = useCallback((vocab : Vocabulary)=>{
+        navigation.navigate(NameScreenProp.vocabulary_detail,{
+            vocab
+        })
+    },[navigation])
+
     const renderItem = useCallback(({ item }: { item: Vocabulary }) => {
         return (
-            <VocabularyItem vocab={item}/>
+            <VocabularyItem vocab={item} onPress={handleVocabDetail}/>
         );
     }, []);
 

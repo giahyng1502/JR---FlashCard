@@ -1,6 +1,6 @@
 import {getStaticRealm} from "./save_data_to_local.ts";
-import {Vocabulary} from "../../models";
-import {parseVocabularies} from "../../utils/convert_vocabulary.ts";
+import {Vocabulary, VocabularyDetail} from "../../models";
+import {parseVocabularies, parseVocabularyDetail} from "../../utils/convert_vocabulary.ts";
 import {JLPTLevel} from "../../types";
 
 export type AdvancedSearchOptions = {
@@ -41,7 +41,7 @@ export const searchVocabularyAdvanced = (options: AdvancedSearchOptions) :Vocabu
             args.push(options.prefix);
         }
 
-        if (options.level !== undefined) {
+        if (options.level) {
             const jlptLevelNumber = parseInt(options.level.replace("N", ""), 10);
             queryParts.push('level == $' + args.length);
             args.push(jlptLevelNumber);
@@ -58,4 +58,12 @@ export const searchVocabularyAdvanced = (options: AdvancedSearchOptions) :Vocabu
         console.error('Lỗi khi tìm kiếm nâng cao:', err);
         return [];
     }
+};
+
+
+export const getVocabularyDetail = (word: string) : VocabularyDetail => {
+    const realm = getStaticRealm('vocab_detail');
+    const data = realm.objectForPrimaryKey<VocabularyDetail>('VocabularyDetail', word);
+
+    return parseVocabularyDetail(data);
 };

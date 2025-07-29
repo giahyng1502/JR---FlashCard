@@ -8,13 +8,17 @@ import IconSound from "../../assets/svgs/ic_sound.tsx";
 
 type Props = {
     vocab: Vocabulary;
+    onPress: (vocab : Vocabulary) => void;
 };
 
-const VocabularyItem = ({ vocab }: Props) => {
+const VocabularyItem = ({ vocab ,onPress }: Props) => {
     const { theme } = useAppTheme();
 
     return (
-        <View style={[styles.container, { backgroundColor: theme.primary }]}>
+        <TouchableOpacity style={[styles.container, { backgroundColor: theme.primary }]}
+                          onPress={() => {
+                              onPress && onPress(vocab);
+                          }}>
             {/* Phần từ vựng chính */}
             <View style={styles.vocabBlock}>
                 {!!vocab.furigana && (
@@ -30,13 +34,15 @@ const VocabularyItem = ({ vocab }: Props) => {
                         {vocab.romaji}
                     </TextComponent>
                 )}
+
+                {/* Phần nghĩa */}
+                <View style={styles.meaningBlock}>
+                    <TextComponent size={FONT_SIZE.MD}>{vocab.meaning}</TextComponent>
+                    <TextComponent size={FONT_SIZE.MD}>{vocab.meaning_vi}</TextComponent>
+                </View>
             </View>
 
-            {/* Phần nghĩa */}
-            <View style={styles.meaningBlock}>
-                <TextComponent size={FONT_SIZE.MD}>{vocab.meaning}</TextComponent>
-                <TextComponent size={FONT_SIZE.MD}>{vocab.meaning_vi}</TextComponent>
-            </View>
+
 
             {/* Phần từ loại (POS) */}
             <View style={styles.block}>
@@ -56,7 +62,7 @@ const VocabularyItem = ({ vocab }: Props) => {
                     <IconSound color={'white'}/>
                 </TouchableOpacity>
             </View>
-        </View>
+        </TouchableOpacity>
     );
 };
 
@@ -67,6 +73,7 @@ const styles = StyleSheet.create({
         padding: PADDING.SM,
         marginVertical: MARGIN.XS,
         alignItems: 'center',
+        flexShrink : 1,
         gap : 10,
         flexWrap: 'wrap',
         justifyContent: 'flex-end', // Căn phải từng dòng
@@ -74,9 +81,9 @@ const styles = StyleSheet.create({
     },
     vocabBlock: {
         justifyContent: 'flex-start',
+        flex : 1,
     },
     meaningBlock: {
-        flex: 1,
         justifyContent: 'center',
     },
     posBlock: {

@@ -6,11 +6,10 @@ import TextComponent from "../../components/ui/text_component.tsx";
 import {FONT_SIZE, PADDING} from "../../styles";
 
 type Props = {
-  theme : ThemeColors,
   item : RelatedWord
 }
 
-const RelativeItem = ({theme,item} : Props) => (
+const RelativeItem = ({item} : Props) => (
   <View style={styles.container}>
     <View style={styles.kanji}>
       <TextComponent size={FONT_SIZE.X}> {item.reading}</TextComponent>

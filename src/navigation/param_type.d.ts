@@ -1,4 +1,4 @@
-import {Grammar} from "../models";
+import {Grammar, Vocabulary} from "../models";
 
 export type BottomStackParamList = {
     vocabulary: undefined,
@@ -14,6 +14,9 @@ export type AppStackParamList = {
     }
     grammar_detail : {
         grammar : Grammar
+    }
+    vocabulary_detail : {
+        vocab : Vocabulary
     }
 }
 

@@ -12,14 +12,16 @@ type Props = {
 }
 
 const LevelComponent = ({levelCurrent,onLevelCurrentChange,theme}: Props) => {
+
+    const handleLevelChange = (level: JLPTLevel) => {
+        level === levelCurrent ? onLevelCurrentChange(undefined) : onLevelCurrentChange(level);
+    }
     const renderLevel = (level: JLPTLevel) => {
         return (
             <TouchableOpacity key={level} style={[styles.item,{
                 backgroundColor : levelCurrent === level ? theme.primary : "transparent",
                 borderColor : theme.borderColor,
-            }]} onPress={()=>{
-                onLevelCurrentChange(level);
-            }}>
+            }]} onPress={()=>handleLevelChange(level)}>
                 <TextComponent size={18} weight="bold">
                     {level}
                 </TextComponent>
