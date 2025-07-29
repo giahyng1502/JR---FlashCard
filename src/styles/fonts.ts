@@ -25,6 +25,7 @@ const FONT_SIZE = {
     LG: 18,
     XL: 22,
     XXL: 28,
+    XXX: 32,
     XXXL : 50
 };
 export const { width, height } = Dimensions.get('window');

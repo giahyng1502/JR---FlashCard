@@ -9,34 +9,6 @@ export const FILE_NAME_KANJI = {
 
 export const JLPT_LEVELS: JLPTLevel[] = ['N5', 'N4', 'N3', 'N2', 'N1'];
 
-export const searchAllKanjiLevels = (keyword: string) => {
-    const results: any[] = [];
-
-    for (const level of JLPT_LEVELS) {
-        try {
-            const realm = getCachedRealm('kanji', level);
-            const matches = realm
-                .objects('KanjiSimple')
-                .filtered(
-                    'kanji CONTAINS[c] $0 OR meaning CONTAINS[c] $0 OR onyomi CONTAINS[c] $0 OR kunyomi CONTAINS[c] $0',
-                    keyword
-                );
-
-            if (matches.length > 0) {
-                results.push(
-                    ...matches.map((item: any) => ({
-                        ...item.toJSON(),
-                        level,
-                    }))
-                );
-            }
-        } catch (err) {
-            console.warn(`Không thể load kanji_${level}:`, err);
-        }
-    }
-
-    return results;
-};
 
 export const searchKanjiByCharacter = function (character: string): KanjiDetail | undefined {
     try {

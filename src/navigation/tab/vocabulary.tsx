@@ -1,41 +1,7 @@
-import React, {useEffect} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {
-    searchVocabularyByKeywordAndPOS
-} from "../../realm/service";
+import React from 'react';
+import Vocabulary_ui from "../../screen/vocabulary/vocabulary_ui.tsx";
 
 
-const VocabularyScreen = () => {
-
-    const loadData = async () => {
-        try {
-            const data = searchVocabularyByKeywordAndPOS("Bài học","Danh từ")
-            console.log(data);
-        } catch (error) {
-            console.error('Lỗi khi load dữ liệu Realm:', error);
-        }
-    };
-
-
-  return (
-      <View style={styles.container}>
-        <TouchableOpacity onPress={loadData}>
-          <Text>Lấy data</Text>
-        </TouchableOpacity>
-      </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 20,
-    color: 'black',
-  },
-});
+const VocabularyScreen = () => <Vocabulary_ui/>
 
 export default VocabularyScreen;

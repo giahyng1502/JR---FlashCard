@@ -33,6 +33,7 @@ const TextComponent: React.FC<Props> = ({
                     color: color || theme.textPrimary,
                     textAlign: align,
                     lineHeight : size * 1.5,
+                    flexWrap: 'wrap',
                 },
                 style,
             ]}
