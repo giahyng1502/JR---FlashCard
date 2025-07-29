@@ -17,6 +17,7 @@ import {JLPTLevel} from "../../types";
 
 const realmCache: Record<string, Realm> = {};
 export const KANJI = "kanji"
+export const GRAMMAR = "grammar"
 export const KANJI_DETAIL = "kanji_detail"
 export const LEVELS = {
     N1: 'N1',

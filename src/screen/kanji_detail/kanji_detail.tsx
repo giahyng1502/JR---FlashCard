@@ -43,9 +43,8 @@ const KanjiDetail = () => {
                 <TextComponent>Nghĩa (VI): {kanjiDetail?.meanings_vi?.join(', ')}</TextComponent>
 
                 {/* TỪ VỰNG LIÊN QUAN */}
-                <View style={{height : 10}}/>
 
-                <TextComponent style={{marginTop: 12}} weight="bold">
+                <TextComponent style={{marginTop: 10}} weight="bold">
                     C. Từ vựng liên quan:
                 </TextComponent>
                 <View style={{height : 10}}/>

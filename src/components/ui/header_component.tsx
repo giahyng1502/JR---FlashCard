@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
+      height : 80,
   },
   icon: {
     width : 40

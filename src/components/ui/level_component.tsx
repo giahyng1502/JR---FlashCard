@@ -11,7 +11,7 @@ type Props = {
     theme : ThemeColors
 }
 
-const KanjiLevelsScreen = ({levelCurrent,onLevelCurrentChange,theme}: Props) => {
+const LevelComponent = ({levelCurrent,onLevelCurrentChange,theme}: Props) => {
     const renderLevel = (level: JLPTLevel) => {
         return (
             <TouchableOpacity key={level} style={[styles.item,{
@@ -63,4 +63,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default KanjiLevelsScreen;
+export default LevelComponent;

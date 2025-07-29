@@ -1,26 +1,35 @@
-import {getCachedRealm} from "./save_data_to_local.ts";
-import {JLPTLevel} from "../../types";
+import { getCachedRealm, GRAMMAR } from "./save_data_to_local.ts";
+import { JLPTLevel } from "../../types";
 
 const JLPT_LEVELS: JLPTLevel[] = ['N1', 'N2', 'N3', 'N4', 'N5'];
+const FILE_NAME_GRAMMAR = "Grammar" as const;
 
-const searchAllGrammarLevels = (keyword: string) => {
+type SearchOptions = {
+    keyword: string;
+    level?: JLPTLevel;
+};
+
+const searchAllGrammarLevels = ({ keyword, level }: SearchOptions) => {
     const results: any[] = [];
+    const searchLevels = level ? [level] : JLPT_LEVELS;
 
-    for (const level of JLPT_LEVELS) {
+    for (const lv of searchLevels) {
         try {
-            const realm = getCachedRealm('grammar', level);
-            const matches = realm
-                .objects('Grammar')
-                .filtered(
-                    'name CONTAINS[c] $0 OR meaning CONTAINS[c] $0 OR structure CONTAINS[c] $0 OR description CONTAINS[c] $0',
-                    keyword
-                );
+            const realm = getCachedRealm(GRAMMAR, lv || "N5");
+
+            const matches = keyword.trim()
+                ? realm.objects(FILE_NAME_GRAMMAR).filtered(
+                    'title LIKE[c] $0 OR short_explanation LIKE[c] $0 OR long_explanation LIKE[c] $0 OR formation LIKE[c] $0',
+                    `*${keyword}*`
+                )
+                : realm.objects(FILE_NAME_GRAMMAR);
+
 
             if (matches.length > 0) {
                 results.push(
                     ...matches.map((item: any) => ({
                         ...item.toJSON(),
-                        level,
+                        level : lv,
                     }))
                 );
             }
@@ -32,4 +41,4 @@ const searchAllGrammarLevels = (keyword: string) => {
     return results;
 };
 
-export {searchAllGrammarLevels}
+export { searchAllGrammarLevels, FILE_NAME_GRAMMAR };

@@ -1,1 +1,2 @@
-export * from './convertKanji.ts'
+export * from './convert_kanji.ts'
+export * from './convert_grammar.ts'

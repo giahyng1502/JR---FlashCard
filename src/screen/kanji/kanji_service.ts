@@ -10,7 +10,7 @@ export function useAllKanji(level : JLPTLevel): Kanji[] {
 
     useEffect(() => {
         try {
-                const realm = getCachedRealm(KANJI, level);
+                const realm = getCachedRealm(KANJI, level || "N5");
                 const data = realm.objects(FILE_NAME_KANJI.kanji);
                 const parsed = parseKanjis(Array.from(data));
 

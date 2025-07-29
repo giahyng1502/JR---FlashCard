@@ -10,15 +10,11 @@ import {KanjiDetailNavigationProp, NameScreenProp} from "../../../navigation";
 type Props = {
     kanjis: Kanji[];
     theme: ThemeColors;
-    onEndReached?: () => void;
-    onEndReachedThreshold?: number;
 };
 
 const KanjiList: React.FC<Props> = ({
                                         kanjis,
                                         theme,
-                                        onEndReached,
-                                        onEndReachedThreshold = 0.4,
                                     }) => {
 
     const navigation = useNavigation<KanjiDetailNavigationProp>();
@@ -48,8 +44,6 @@ const KanjiList: React.FC<Props> = ({
             keyExtractor={keyExtractor}
             estimatedItemSize={48}
             numColumns={6}
-            onEndReached={onEndReached}
-            onEndReachedThreshold={onEndReachedThreshold}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.container}
             removeClippedSubviews={true}

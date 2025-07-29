@@ -19,13 +19,6 @@ const KanjiUi = () => {
     const [searchText, setSearchText] = useState<string>('')
     const [selectLevel, setSelectLevel] = useState<JLPTLevel>("N5")
     const allKanjis = useAllKanji(selectLevel);
-    const visibleKanjis = allKanjis.slice(0, limit);
-
-    const loadMore = () => {
-        if (limit < allKanjis.length) {
-            setLimit(prev => prev + PAGE_SIZE);
-        }
-    };
 
 
     return (
@@ -37,10 +30,8 @@ const KanjiUi = () => {
                 {selectLevel}
             </TextComponent>
             <KanjiList
-                kanjis={visibleKanjis}
+                kanjis={allKanjis}
                 theme={theme}
-                onEndReached={loadMore}
-                onEndReachedThreshold={0.8}
             />
         </View>
     );

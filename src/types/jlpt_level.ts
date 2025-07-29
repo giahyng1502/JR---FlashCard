@@ -1,2 +1,2 @@
-export type JLPTLevel = 'N1' | 'N2' | 'N3' | 'N4' | 'N5';
+export type JLPTLevel = 'N1' | 'N2' | 'N3' | 'N4' | 'N5'|undefined;
 

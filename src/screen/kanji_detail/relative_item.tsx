@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection : 'row',
     alignItems : 'center',
-    borderWidth : 0.5,
+    borderTopWidth : 0.5,
     padding : PADDING.XS
   },
   text: {
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   kanji : {
-    width : '30%',
+    width : '35%',
     justifyContent : 'center',
     alignContent: 'center',
   },
