@@ -7,14 +7,17 @@ import {FONT_SIZE, MARGIN, PADDING, RADIUS} from "../../styles";
 
 type Props = {
     grammar: Grammar;
+    onPress: (grammar : Grammar) => void;
 }
 
-const GrammarItem = ({grammar} : Props) => {
+const GrammarItem = ({grammar,onPress} : Props) => {
     const {theme} = useAppTheme();
     return (
         <TouchableOpacity style={[styles.container,{
             backgroundColor : theme.primary
-        }]}>
+        }]} onPress={()=>{
+            onPress && onPress(grammar);
+        }}>
             <TextComponent bold size={FONT_SIZE.LG}>{grammar.title}</TextComponent>
             <TextComponent size={FONT_SIZE.SM}>{grammar.short_explanation}</TextComponent>
             <TextComponent size={FONT_SIZE.SM}>{grammar.short_explanation_vi}</TextComponent>

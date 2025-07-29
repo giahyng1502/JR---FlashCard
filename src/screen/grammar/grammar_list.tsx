@@ -3,19 +3,27 @@ import { View, Text, StyleSheet } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { Grammar } from '../../models';
 import GrammarItem from "./grammar_item.tsx";
+import {useNavigation} from "@react-navigation/native";
+import {GrammarDetailNavigationProp, NameScreenProp} from "../../navigation";
 
 type Props = {
     grammars: Grammar[];
 };
 const GrammarList = ({ grammars }: Props) => {
-    const renderItem = React.useCallback(
-        ({ item }: { item: Grammar }) => <GrammarItem grammar={item} />,
-        []
-    );
+    const navigation = useNavigation<GrammarDetailNavigationProp>();
     const keyExtractor = useCallback((item: Grammar, index: number) => {
         return `${item.title}_${index}`;
     }, []);
 
+    const handleGrammarDetail = useCallback((grammar : Grammar) => {
+        navigation.navigate(NameScreenProp.grammar_detail,{
+            grammar
+        })
+    },[]);
+    const renderItem = React.useCallback(
+        ({ item }: { item: Grammar }) => <GrammarItem grammar={item} onPress={handleGrammarDetail} />,
+        []
+    );
     return (
         <FlashList
             data={grammars}

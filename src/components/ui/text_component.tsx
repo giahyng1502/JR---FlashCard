@@ -24,6 +24,7 @@ const TextComponent: React.FC<Props> = ({
 
     return (
         <Text
+            selectable={true}
             {...rest}
             style={[
                 {
@@ -31,6 +32,7 @@ const TextComponent: React.FC<Props> = ({
                     fontFamily: bold ? FONTS.BOLD : FONTS.REGULAR,
                     color: color || theme.textPrimary,
                     textAlign: align,
+                    lineHeight : size * 1.5,
                 },
                 style,
             ]}

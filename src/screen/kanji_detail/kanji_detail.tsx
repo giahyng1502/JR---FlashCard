@@ -32,9 +32,9 @@ const KanjiDetail = () => {
                 </View>
 
                 {/* THÔNG TIN */}
-                <TextComponent>A. On: {kanjiDetail?.on_readings?.join(', ')}</TextComponent>
+                <TextComponent size={FONT_SIZE.LG}>A. On: {kanjiDetail?.on_readings?.join(', ')}</TextComponent>
                 <View style={{height : 10}}/>
-                <TextComponent>B. Âm Kun: {kanjiDetail?.kun_readings?.join(', ')}</TextComponent>
+                <TextComponent size={FONT_SIZE.LG}>B. Âm Kun: {kanjiDetail?.kun_readings?.join(', ')}</TextComponent>
                 <View style={{height : 10}}/>
 
                 <TextComponent>Nghĩa (EN): {kanjiDetail?.meanings?.join(', ')}</TextComponent>
@@ -44,7 +44,7 @@ const KanjiDetail = () => {
 
                 {/* TỪ VỰNG LIÊN QUAN */}
 
-                <TextComponent style={{marginTop: 10}} weight="bold">
+                <TextComponent style={{marginTop: 10}} weight="bold" size={FONT_SIZE.LG}>
                     C. Từ vựng liên quan:
                 </TextComponent>
                 <View style={{height : 10}}/>
