@@ -4,14 +4,15 @@ import { Vocabulary } from '../../models';
 import { useAppTheme } from '../../hooks';
 import { FONT_SIZE, MARGIN, PADDING, RADIUS } from '../../styles';
 import TextComponent from '../../components/ui/text_component.tsx';
-import IconSound from "../../assets/svgs/ic_sound.tsx";
+import IconSound from '../../assets/svgs/ic_sound.tsx';
 
 type Props = {
     vocab: Vocabulary;
     onPress: (vocab : Vocabulary) => void;
+    onPlayAudio: (file_name : string) => void;
 };
 
-const VocabularyItem = ({ vocab ,onPress }: Props) => {
+const VocabularyItem = ({ vocab ,onPress ,onPlayAudio }: Props) => {
     const { theme } = useAppTheme();
 
     return (
@@ -47,18 +48,24 @@ const VocabularyItem = ({ vocab ,onPress }: Props) => {
             {/* Phần từ loại (POS) */}
             <View style={styles.block}>
                 <View style={[styles.posBlock,{
-                    backgroundColor : theme.secondary
+                    backgroundColor : theme.secondary,
                 }]}>
                     <TextComponent size={FONT_SIZE.SM}>
                         {vocab.pos?.split(' ')[0].replace(/[,，。]/g, '') || ''}
                     </TextComponent>
                 </View>
 
-                <TouchableOpacity style={{
+                <TouchableOpacity
+                    style={{
                     backgroundColor : '#1D940F',
                     padding : PADDING.XS,
-                    borderRadius : RADIUS.SM
-                }}>
+                    borderRadius : RADIUS.SM,
+                }}
+                    onPress={()=> {
+                        console.log(vocab)
+                       onPlayAudio && onPlayAudio(vocab.audio);
+                    }}
+                >
                     <IconSound color={'white'}/>
                 </TouchableOpacity>
             </View>
@@ -90,13 +97,13 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
         padding : PADDING.XS,
-        borderRadius : RADIUS.MD
+        borderRadius : RADIUS.MD,
     },
 
     block : {
         alignItems : 'flex-end',
         gap : 10,
-    }
+    },
 });
 
 export default VocabularyItem;

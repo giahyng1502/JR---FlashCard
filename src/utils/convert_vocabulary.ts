@@ -10,6 +10,7 @@ export function parseVocabularies(rawList: any[]): Vocabulary[] {
         pos : raw.pos,
         meaning_vi : raw.meaning_vi,
         pos_vi : raw.pos_vi,
+        audio : raw.audio,
     }));
 }
 

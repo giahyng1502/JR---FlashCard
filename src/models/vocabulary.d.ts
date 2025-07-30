@@ -7,6 +7,7 @@ type Vocabulary = {
     pos : string,
     meaning_vi : string,
     pos_vi : string,
+    audio : string,
 }
 
 type Segment = {

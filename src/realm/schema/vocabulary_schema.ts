@@ -1,44 +1,46 @@
-import { ObjectSchema } from "realm";
+import { ObjectSchema } from 'realm';
 const VocabularySchema = {
-  name: "Vocabulary",
-  primaryKey: "word",
+  name: 'Vocabulary',
+  primaryKey: 'id',
   properties: {
-    word: "string",
-    meaning: "string",
-    furigana: "string",
-    romaji: "string",
-    level: "int",
-    pos: "string",
-    meaning_vi: "string",
-    pos_vi: "string",
+    id : 'int',
+    word: 'string',
+    meaning: 'string',
+    furigana: 'string',
+    romaji: 'string',
+    level: 'int',
+    pos: 'string',
+    meaning_vi: 'string',
+    pos_vi: 'string',
+    audio : 'string',
   },
 };
 
-const SegmentSchema : ObjectSchema= {
-  name: "Segment",
+const SegmentSchema : ObjectSchema = {
+  name: 'Segment',
   embedded: true,
   properties: {
-    furigana: "string",
-    unlinked: "string",
+    furigana: 'string',
+    unlinked: 'string',
   },
 };
 
 const ExampleSchema : ObjectSchema = {
-  name: "ExampleVocabulary",
+  name: 'ExampleVocabulary',
   embedded: true,
   properties: {
-    segments: "Segment[]",
-    en: "string",
-    vi: "string",
+    segments: 'Segment[]',
+    en: 'string',
+    vi: 'string',
   },
 };
 
 const VocabularyDetailSchema : ObjectSchema = {
-    name: "VocabularyDetail",
-    primaryKey: "word",
+    name: 'VocabularyDetail',
+    primaryKey: 'word',
     properties: {
-      word: "string",
-      examples: "ExampleVocabulary[]",
+      word: 'string',
+      examples: 'ExampleVocabulary[]',
     },
 };
 

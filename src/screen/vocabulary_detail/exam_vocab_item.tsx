@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     justifyContent : 'center'
   },
   furigana: {
-    fontSize: FONT_SIZE.X,
+    fontSize: FONT_SIZE.XS,
   },
   unlinked: {
     fontSize: FONT_SIZE.XL,

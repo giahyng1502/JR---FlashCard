@@ -5,6 +5,7 @@ import { Vocabulary } from '../../models';
 import VocabularyItem from "./vocabulary_item.tsx";
 import {useNavigation} from "@react-navigation/native";
 import {MainNavigationProp, NameScreenProp} from "../../navigation";
+import {playLocalSound} from "../../configs/audio/play_audio.ts";
 
 type Props = {
     vocabs: Vocabulary[];
@@ -20,11 +21,14 @@ const VocabularyList = ({ vocabs }: Props) => {
         })
     },[navigation])
 
+    const handlePlayAudio = useCallback((file_name : string)=>{
+        playLocalSound(file_name);
+    },[])
     const renderItem = useCallback(({ item }: { item: Vocabulary }) => {
         return (
-            <VocabularyItem vocab={item} onPress={handleVocabDetail}/>
+            <VocabularyItem vocab={item} onPress={handleVocabDetail} onPlayAudio={handlePlayAudio} />
         );
-    }, []);
+    }, [handlePlayAudio, handleVocabDetail]);
 
     const keyExtractor = useCallback((item: Vocabulary, index: number) => {
         return `${item.word}-${index}`;
