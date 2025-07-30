@@ -1,4 +1,5 @@
 type Vocabulary = {
+    id : number
     word : string,
     meaning : string,
     furigana : string,

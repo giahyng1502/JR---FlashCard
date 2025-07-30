@@ -36,8 +36,8 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
     const setThemeId = async (id: string) => {
         try {
-            await AsyncStorage.setItem(THEME_STORAGE_KEY, id);
             setThemeIdState(id);
+            await AsyncStorage.setItem(THEME_STORAGE_KEY, id);
         } catch (err) {
             console.warn('Lỗi lưu AsyncStorage:', err);
         }

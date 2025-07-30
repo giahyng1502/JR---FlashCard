@@ -8,7 +8,7 @@ import IconSound from '../../assets/svgs/ic_sound.tsx';
 
 type Props = {
     vocab: Vocabulary;
-    onPress: (vocab : Vocabulary) => void;
+    onPress?: (vocab : Vocabulary) => void;
     onPlayAudio: (file_name : string) => void;
 };
 

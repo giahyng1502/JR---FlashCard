@@ -10,11 +10,7 @@ import {JLPTLevel} from "../../types";
 import TextComponent from "../../components/ui/text_component.tsx";
 import HeaderComponent from "../../components/ui/header_component.tsx";
 
-const PAGE_SIZE = 30;
-const INITIAL_LIMIT = 60;
-
 const KanjiUi = () => {
-    const [limit, setLimit] = useState(INITIAL_LIMIT);
     const { theme } = useAppTheme();
     const [searchText, setSearchText] = useState<string>('')
     const [selectLevel, setSelectLevel] = useState<JLPTLevel>("N5")
