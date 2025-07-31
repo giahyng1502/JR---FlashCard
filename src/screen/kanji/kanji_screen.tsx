@@ -9,27 +9,25 @@ import LevelComponent from "../../components/ui/level_component.tsx";
 import {JLPTLevel} from "../../types";
 import TextComponent from "../../components/ui/text_component.tsx";
 import HeaderComponent from "../../components/ui/header_component.tsx";
+import Container from "../../components/ui/container.tsx";
 
 const KanjiUi = () => {
     const { theme } = useAppTheme();
-    const [searchText, setSearchText] = useState<string>('')
     const [selectLevel, setSelectLevel] = useState<JLPTLevel>("N5")
     const allKanjis = useAllKanji(selectLevel);
 
 
     return (
-        <View style={styles.container}>
-            <HeaderComponent theme={theme} title={"Kanji"} isSearch/>
-            <SearchComponent value={searchText} theme={theme} onValueChange={setSearchText}/>
-            <LevelComponent theme={theme} onLevelCurrentChange={setSelectLevel} levelCurrent={selectLevel}/>
+        <Container>
+            <HeaderComponent title={"Kanji"}/>
+            <LevelComponent onLevelCurrentChange={setSelectLevel} levelCurrent={selectLevel}/>
             <TextComponent size={FONT_SIZE.LG} color={theme.textSecondary} style={{marginBottom : MARGIN.SM}}>
                 {selectLevel}
             </TextComponent>
             <KanjiList
                 kanjis={allKanjis}
-                theme={theme}
             />
-        </View>
+        </Container>
     );
 };
 

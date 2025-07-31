@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import {FONT_SIZE} from "../../styles";
 import IconCheck from "../../assets/svgs/icon_check.tsx";
 import {useAppTheme} from "../../hooks";
+import TextComponent from "./text_component.tsx";
 
 type Props = {
     label: string;
@@ -14,10 +15,10 @@ const CheckBoxComponent = ({ label, checked, onChange } : Props) => {
     const {theme} = useAppTheme();
     return (
         <TouchableOpacity style={styles.container} onPress={() => onChange(!checked)}>
-            <View style={[styles.checkbox, checked && {borderColor : theme.activeColor }]}>
-                {checked && <IconCheck color={theme.activeColor} />}
+            <View style={[styles.checkbox,{borderColor: theme.borderColor}, checked && {borderColor : theme.activeColor }]}>
+                {checked && <IconCheck color={theme.primary} />}
             </View>
-            <Text style={styles.label}>{label}</Text>
+            <TextComponent>{label}</TextComponent>
         </TouchableOpacity>
     );
 };
@@ -32,14 +33,9 @@ const styles = StyleSheet.create({
         width: 16,
         height: 16,
         borderWidth: 2,
-        borderColor: '#444',
         marginRight: 10,
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    label: {
-        fontSize: 16,
-        color: '#000',
     },
 });
 

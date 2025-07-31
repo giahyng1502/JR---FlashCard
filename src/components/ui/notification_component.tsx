@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import {useAppTheme} from "../../hooks";
 import TextComponent from "./text_component.tsx";
 import {FONT_SIZE, PADDING, RADIUS} from "../../styles";
+import tinycolor from 'tinycolor2';
 const vocabulary = {
         word: "毎朝",
         meaning: "every morning",
@@ -22,7 +23,7 @@ type Props = {
 }
 const NotificationComponent = ({isEnglish = true,isVI = true,isRomaji = false}:Props) => {
     const {theme} = useAppTheme();
-
+    const backgroundColor = theme.primary
     const mean =
         (isEnglish ? vocabulary.meaning : "") +
         (isVI ? `${isEnglish ? " - " : ""}${vocabulary.meaning_vi}` : "")
@@ -30,7 +31,9 @@ const NotificationComponent = ({isEnglish = true,isVI = true,isRomaji = false}:P
     const word = `${vocabulary.word} - ${vocabulary.furigana}` + (isRomaji ? ` - ${vocabulary.romaji}` : "");
 
     return  (
-        <View style={styles.container}>
+        <View style={[styles.container,{
+            backgroundColor
+        }]}>
             <TextComponent>{word}</TextComponent>
             <TextComponent size={FONT_SIZE.SM} style={{
                 position : "absolute",
@@ -45,7 +48,6 @@ const NotificationComponent = ({isEnglish = true,isVI = true,isRomaji = false}:P
 const styles = StyleSheet.create({
   container: {
       height : 100,
-      backgroundColor : "white",
       borderRadius : RADIUS.LG,
       padding : PADDING.SM,
       justifyContent : 'space-around'

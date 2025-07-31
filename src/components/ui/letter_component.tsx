@@ -1,8 +1,7 @@
 import React from 'react';
-import {View, ScrollView, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 import TextComponent from './text_component.tsx';
 import {MARGIN, RADIUS} from '../../styles';
-import {ThemeColors} from '../../types';
 import {useAppTheme} from "../../hooks";
 
 // Hiragana list

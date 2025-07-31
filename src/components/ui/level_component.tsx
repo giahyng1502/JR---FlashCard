@@ -3,15 +3,18 @@ import {View, ScrollView, StyleSheet, TouchableOpacity} from 'react-native';
 import {JLPT_LEVELS} from "../../realm/service";
 import TextComponent from "./text_component.tsx";
 import {MARGIN, RADIUS} from "../../styles";
-import {JLPTLevel, ThemeColors} from "../../types";
+import {JLPTLevel} from "../../types";
+import {useAppTheme} from "../../hooks";
 
 type Props = {
     levelCurrent: JLPTLevel;
     onLevelCurrentChange: (levelCurrent: JLPTLevel) => void;
-    theme : ThemeColors
 }
 
-const LevelComponent = ({levelCurrent,onLevelCurrentChange,theme}: Props) => {
+const LevelComponent = ({levelCurrent,onLevelCurrentChange}: Props) => {
+
+    const {theme} = useAppTheme();
+
 
     const handleLevelChange = (level: JLPTLevel) => {
         level === levelCurrent ? onLevelCurrentChange(undefined) : onLevelCurrentChange(level);

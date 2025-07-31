@@ -3,21 +3,20 @@ import {StyleSheet} from 'react-native';
 import {FlashList} from '@shopify/flash-list';
 import {Kanji} from '../../../models';
 import KanjiItem from './kanji_item';
-import {ThemeColors} from '../../../types';
 import {useNavigation} from "@react-navigation/native";
 import {KanjiDetailNavigationProp, NameScreenProp} from "../../../navigation";
+import {useAppTheme} from "../../../hooks";
 
 type Props = {
     kanjis: Kanji[];
-    theme: ThemeColors;
 };
 
 const KanjiList: React.FC<Props> = ({
                                         kanjis,
-                                        theme,
                                     }) => {
 
     const navigation = useNavigation<KanjiDetailNavigationProp>();
+    const { theme } = useAppTheme();
 
     const handlePress = useCallback((character : string)=>{
         navigation.navigate(NameScreenProp.kanjiDetail,{
@@ -26,8 +25,8 @@ const KanjiList: React.FC<Props> = ({
     },[])
 
     const renderItem = React.useCallback(
-        ({item}: { item: Kanji }) => <KanjiItem item={item} theme={theme} onPress={handlePress}/>,
-        [theme]
+        ({item}: { item: Kanji }) => <KanjiItem item={item} onPress={handlePress}/>,
+        [handlePress, theme]
     );
 
     const keyExtractor = React.useCallback(

@@ -7,6 +7,7 @@ import {GrammarDetailRouteProp} from "../../navigation";
 import {FONT_SIZE, PADDING, RADIUS} from "../../styles";
 import TextComponent from "../../components/ui/text_component.tsx";
 import GrammarList from "./grammar_list.tsx";
+import Container from "../../components/ui/container.tsx";
 
 const GrammarDetail = () => {
     const {theme} = useAppTheme();
@@ -54,19 +55,15 @@ const GrammarDetail = () => {
         )
     },[grammar,theme])
     return (
-        <View style={styles.container}>
-            <HeaderComponent theme={theme} title={"Grammar Detail"} isBack />
+        <Container>
+            <HeaderComponent title={"Grammar Detail"} isBack />
 
             <GrammarList items={grammar.examples} headerComponent={headerComponent}/>
-        </View>
+        </Container>
     );
 
 }
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-      padding : PADDING.SM
-  },
     titleBox : {
       borderRadius : RADIUS.LG,
         padding : PADDING.LG,

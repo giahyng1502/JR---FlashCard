@@ -1,21 +1,27 @@
 import React from 'react';
-import {View, Text, StyleSheet, TextInput} from 'react-native';
-import {ThemeColors} from "../../types";
+import {View,StyleSheet, TextInput} from 'react-native';
 import IconSearch from "../../assets/svgs/ic_search.tsx";
 import {PADDING, RADIUS} from "../../styles";
+import {useAppTheme} from "../../hooks";
 
 type Props = {
-    theme : ThemeColors,
     value : string,
     onValueChange : (value : string) => void,
+    searchPlaceholder : string
 }
 
-const SearchComponent: React.FC<Props> = ({theme,value,onValueChange}) => {
-
+const SearchComponent: React.FC<Props> = ({value,onValueChange,searchPlaceholder}) => {
+    const {theme} = useAppTheme();
     return (
         <View style={[styles.container,{backgroundColor : theme.searchPrimary}]}>
-            <IconSearch color={"#999999"}/>
-            <TextInput style={styles.searchInput} onChangeText={onValueChange} value={value} placeholder={"Search..."} />
+            <IconSearch color={theme.primary}/>
+            <TextInput
+                style={styles.searchInput}
+                onChangeText={onValueChange}
+                value={value}
+                placeholderTextColor={theme.textSecondary}
+                placeholder={searchPlaceholder}
+            />
         </View>
     );
 }

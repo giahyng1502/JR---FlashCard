@@ -8,6 +8,7 @@ import {useAppTheme} from "../../hooks";
 import {FONT_SIZE, PADDING, RADIUS} from "../../styles";
 import TextComponent from "../../components/ui/text_component.tsx";
 import RelativeItem from "./relative_item.tsx";
+import Container from "../../components/ui/container.tsx";
 
 const KanjiDetail = () => {
     const navigation = useNavigation();
@@ -17,8 +18,8 @@ const KanjiDetail = () => {
     const kanjiDetail = useKanjiDetail(character);
 
     return (
-        <View style={styles.container}>
-            <HeaderComponent theme={theme} title="Kanji Detail" isBack />
+        <Container>
+            <HeaderComponent title="Kanji Detail" isBack />
 
             <ScrollView
                 showsVerticalScrollIndicator={false}
@@ -62,7 +63,7 @@ const KanjiDetail = () => {
                     <RelativeItem key={`${item.word}_${index}`} item={item} />
                 ))}
             </ScrollView>
-        </View>
+        </Container>
     );
 };
 

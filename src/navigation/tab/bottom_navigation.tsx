@@ -83,7 +83,7 @@ const BottomNavigation = () => {
                 tabBarStyle: {
                     height: bottomNavHeight,
                     paddingTop: 20,
-                    backgroundColor: 'white',
+                    backgroundColor: theme.background,
                 },
             })}>
             <Tab.Screen name="vocabulary" children={() => <VocabularyScreen />} />

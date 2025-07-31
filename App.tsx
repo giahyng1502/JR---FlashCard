@@ -4,27 +4,39 @@ import {ThemeProvider} from "./src/context/theme_context.tsx";
 import RootNavigator from "./src/navigation/app_navigation.tsx";
 import {I18nextProvider} from "react-i18next";
 import i18n from './src/i18n';
+import {useAppTheme} from "./src/hooks";
 
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+    const systemScheme = useColorScheme();
+    const { themeMode } = useAppTheme();
 
-  return (
-          <GestureHandlerRootView style={styles.container}>
+    const barStyle =
+        themeMode === 'dark'
+            ? 'light-content'
+            : themeMode === 'light'
+                ? 'dark-content'
+                : systemScheme === 'dark'
+                    ? 'light-content'
+                    : 'dark-content';
+
+    return (
+        <GestureHandlerRootView style={styles.container}>
             <ThemeProvider>
-              <I18nextProvider i18n={i18n}>
-                <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-                <RootNavigator />
-              </I18nextProvider>
+                <I18nextProvider i18n={i18n}>
+                    <StatusBar barStyle={barStyle} />
+                    <RootNavigator />
+                </I18nextProvider>
             </ThemeProvider>
-          </GestureHandlerRootView>
-  );
+        </GestureHandlerRootView>
+    );
 }
 
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+    container: {
+        flex: 1,
+    },
 });
 
 export default App;

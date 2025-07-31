@@ -1,16 +1,16 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {Kanji} from "../../../models";
-import {ThemeColors} from "../../../types";
 import {FONT_SIZE, RADIUS} from "../../../styles";
+import {useAppTheme} from "../../../hooks";
 
 type Props = {
     item: Kanji;
-    theme : ThemeColors,
     onPress?: (character : string) => void,
 };
 
-const KanjiItem = ({ item,theme,onPress }: Props) => {
+const KanjiItem = ({ item,onPress }: Props) => {
+    const {theme} = useAppTheme();
     return (
         <TouchableOpacity style={[styles.container,{backgroundColor : theme.primary}]} onPress={()=>{
             onPress && onPress(item.character);

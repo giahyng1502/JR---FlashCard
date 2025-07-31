@@ -8,6 +8,7 @@ import {FONT_SIZE, PADDING, RADIUS} from "../../styles";
 import TextComponent from "../../components/ui/text_component.tsx";
 import ExamplesVocabularyList from "./exam_vocab_list.tsx";
 import useVocabularyDetail from "./vocabulary_detail_hook.ts";
+import Container from "../../components/ui/container.tsx";
 
 const VocabularyDetail = () => {
   const route = useRoute<VocabularyDetailRouteProp>();
@@ -16,8 +17,8 @@ const VocabularyDetail = () => {
   const vobDetail = useVocabularyDetail(vocabulary.word);
 
   return (
-      <View style={styles.container}>
-        <HeaderComponent theme={theme} title={'Word Detail'} isBack />
+      <Container>
+        <HeaderComponent title={'Word Detail'} isBack />
         <ScrollView showsVerticalScrollIndicator={false}>
         <View style={[styles.wordBox,{
           backgroundColor : theme.primary
@@ -33,7 +34,7 @@ const VocabularyDetail = () => {
         <TextComponent size={FONT_SIZE.LG}>B.Examples</TextComponent>
         <ExamplesVocabularyList examples={vobDetail?.examples} />
         </ScrollView>
-      </View>
+      </Container>
   );
 };
 
