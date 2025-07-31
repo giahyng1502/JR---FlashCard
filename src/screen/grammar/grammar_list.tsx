@@ -1,59 +1,52 @@
-import React, {useCallback} from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useCallback, useRef } from 'react';
+import { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
+import Animated from 'react-native-reanimated';
 import { FlashList } from '@shopify/flash-list';
 import { Grammar } from '../../models';
-import GrammarItem from "./grammar_item.tsx";
-import {useNavigation} from "@react-navigation/native";
-import {GrammarDetailNavigationProp, NameScreenProp} from "../../navigation";
+import GrammarItem from './grammar_item';
+import { useNavigation } from '@react-navigation/native';
+import { GrammarDetailNavigationProp, NameScreenProp } from '../../navigation';
 
 type Props = {
     grammars: Grammar[];
+    scrollHandler?: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
 };
-const GrammarList = ({ grammars }: Props) => {
+
+const AnimatedFlashList = Animated.createAnimatedComponent(FlashList<Grammar>);
+
+const GrammarList = ({ grammars, scrollHandler }: Props) => {
     const navigation = useNavigation<GrammarDetailNavigationProp>();
+    const listRef = useRef<FlashList<Grammar>>(null); // optional, in case you need to scroll to top later
+
     const keyExtractor = useCallback((item: Grammar, index: number) => {
         return `${item.title}_${index}`;
     }, []);
 
-    const handleGrammarDetail = useCallback((grammar : Grammar) => {
-        navigation.navigate(NameScreenProp.grammar_detail,{
-            grammar
-        })
-    },[]);
-    const renderItem = React.useCallback(
-        ({ item }: { item: Grammar }) => <GrammarItem grammar={item} onPress={handleGrammarDetail} />,
-        []
+    const handleGrammarDetail = useCallback((grammar: Grammar) => {
+        navigation.navigate(NameScreenProp.grammar_detail, {
+            grammar,
+        });
+    }, [navigation]);
+
+    const renderItem = useCallback(
+        ({ item }: { item: Grammar }) => (
+            <GrammarItem grammar={item} onPress={handleGrammarDetail} />
+        ),
+        [handleGrammarDetail]
     );
+
     return (
-        <FlashList
+        <AnimatedFlashList
+            ref={listRef}
             data={grammars}
             renderItem={renderItem}
             estimatedItemSize={80}
             keyExtractor={keyExtractor}
             showsVerticalScrollIndicator={false}
-            removeClippedSubviews
+            onScroll={scrollHandler}
+            scrollEventThrottle={16}
         />
     );
 };
-
-
-const styles = StyleSheet.create({
-    itemContainer: {
-        paddingVertical: 12,
-        paddingHorizontal: 16,
-        borderBottomWidth: 0.5,
-        borderBottomColor: '#ccc',
-    },
-    title: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#222',
-    },
-    meaning: {
-        fontSize: 16,
-        color: '#555',
-        marginTop: 4,
-    },
-});
 
 export default GrammarList;

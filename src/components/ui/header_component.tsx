@@ -12,9 +12,10 @@ type Props = {
     title: string;
     isSearch?: boolean;
     isBack?: boolean;
+    onSearch? : ()=>void;
 };
 
-const HeaderComponent = ({title, isSearch, isBack }: Props) => {
+const HeaderComponent = ({title, isSearch, isBack,onSearch }: Props) => {
     const {theme} = useAppTheme();
     const navigation = useNavigation();
 
@@ -40,7 +41,7 @@ const HeaderComponent = ({title, isSearch, isBack }: Props) => {
                 </TextComponent>
 
                 {isSearch ? (
-                    <TouchableOpacity style={styles.icon}>
+                    <TouchableOpacity style={styles.icon} onPress={onSearch}>
                         <IconSearch color={theme.textPrimary} />
                     </TouchableOpacity>
                 ) : (

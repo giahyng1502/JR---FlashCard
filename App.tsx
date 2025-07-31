@@ -11,14 +11,9 @@ function App() {
     const systemScheme = useColorScheme();
     const { themeMode } = useAppTheme();
 
-    const barStyle =
-        themeMode === 'dark'
-            ? 'light-content'
-            : themeMode === 'light'
-                ? 'dark-content'
-                : systemScheme === 'dark'
-                    ? 'light-content'
-                    : 'dark-content';
+    const isDark = themeMode === 'dark' || (themeMode === 'system' && systemScheme === 'dark');
+    const barStyle = isDark ? 'light-content' : 'dark-content';
+
 
     return (
         <GestureHandlerRootView style={styles.container}>

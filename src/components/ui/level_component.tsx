@@ -38,7 +38,7 @@ const LevelComponent = ({levelCurrent,onLevelCurrentChange}: Props) => {
                 Level:
             </TextComponent>
 
-            <ScrollView contentContainerStyle={styles.scrollContent} horizontal={true}>
+            <ScrollView contentContainerStyle={styles.scrollContent} horizontal={true} showsHorizontalScrollIndicator={false}>
                 {JLPT_LEVELS.map(renderLevel)}
             </ScrollView>
         </View>

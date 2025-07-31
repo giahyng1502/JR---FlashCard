@@ -4,7 +4,6 @@ import KanjiList from "./kanji_list/kanji_list.tsx";
 import {useAppTheme} from "../../hooks";
 import {FONT_SIZE, MARGIN, PADDING} from "../../styles";
 import {useAllKanji} from "./kanji_service.ts";
-import SearchComponent from "../../components/ui/search_component.tsx";
 import LevelComponent from "../../components/ui/level_component.tsx";
 import {JLPTLevel} from "../../types";
 import TextComponent from "../../components/ui/text_component.tsx";
