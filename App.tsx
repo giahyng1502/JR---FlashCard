@@ -12,6 +12,7 @@ import {
     RelatedWordSchema_Study, StudySchema,
     VocabularySchema_Study
 } from "./src/realm/schema";
+import {VisitCounterProvider} from "./src/context/visit_context.tsx";
 
 
 function App() {
@@ -38,12 +39,14 @@ function App() {
                 >
                 <ThemeProvider>
                     <I18nextProvider i18n={i18n}>
-                        <StatusBar barStyle={barStyle} />
-                        <RootNavigator />
+                        <VisitCounterProvider>
+                            <StatusBar barStyle={barStyle} />
+                            <RootNavigator />
+                        </VisitCounterProvider>
                     </I18nextProvider>
                 </ThemeProvider>
                 </RealmProvider>
-                    
+
             </GestureHandlerRootView>
     );
 }
