@@ -20,7 +20,6 @@ const ExamplesVocabularyList = ({examples}: Props) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingBottom: 100,
     flex : 1,
   },
 });

@@ -9,6 +9,7 @@ import {JLPTLevel} from "../../types";
 import TextComponent from "../../components/ui/text_component.tsx";
 import HeaderComponent from "../../components/ui/header_component.tsx";
 import Container from "../../components/ui/container.tsx";
+import BannerAdComponent from "../../components/ads/banner_ads.tsx";
 
 const KanjiUi = () => {
     const { theme } = useAppTheme();

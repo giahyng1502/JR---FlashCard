@@ -1,12 +1,16 @@
-import React, { useCallback } from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, {useCallback} from 'react';
+import {StyleSheet} from 'react-native';
 import Animated from 'react-native-reanimated';
-import { FlashList } from '@shopify/flash-list';
-import { Vocabulary } from '../../models';
+import {FlashList} from '@shopify/flash-list';
+import {Vocabulary} from '../../models';
 import VocabularyItem from './vocabulary_item';
-import { useNavigation } from '@react-navigation/native';
-import { MainNavigationProp, NameScreenProp } from '../../navigation';
-import { playLocalSound } from '../../configs/audio/play_audio.ts';
+import {useNavigation} from '@react-navigation/native';
+import {MainNavigationProp, NameScreenProp} from '../../navigation';
+import {playLocalSound} from '../../configs/audio/play_audio.ts';
+import BannerAdComponent from "../../components/ads/banner_ads.tsx";
+import {BannerAdSize} from "react-native-google-mobile-ads";
+import {VocabularyListItem} from "../../utils/convert_vocabulary.ts";
+import {NativeComponent} from "../../components/ads/native_card_ads.tsx";
 
 type Props = {
     vocabs: Vocabulary[];
@@ -26,7 +30,13 @@ const VocabularyList = ({ vocabs, scrollHandler }: Props) => {
         playLocalSound(file_name);
     }, []);
 
-    const renderItem = useCallback(({ item }: { item: Vocabulary }) => {
+
+    const renderItem = useCallback(({ item }: { item: VocabularyListItem }) => {
+        if ("type" in item && item.type === "native_ad") {
+            return <NativeComponent />;
+        }
+
+        // item là Vocabulary
         return (
             <VocabularyItem
                 vocab={item}
@@ -49,6 +59,7 @@ const VocabularyList = ({ vocabs, scrollHandler }: Props) => {
             showsVerticalScrollIndicator={false}
             onScroll={scrollHandler}
             scrollEventThrottle={16}
+            ListHeaderComponent={<BannerAdComponent size={BannerAdSize.BANNER}/>}
         />
     );
 };

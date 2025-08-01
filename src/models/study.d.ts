@@ -1,7 +1,7 @@
 export type Type = "kanji" | "vocabulary" | "grammar"
 import { BSON } from "realm";
 export type Study = {
-    _id: BSON.ObjectId;
+    _id?: BSON.ObjectId;
     title: string;
     description: string;
     createdAt: string;

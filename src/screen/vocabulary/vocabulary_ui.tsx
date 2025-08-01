@@ -18,6 +18,7 @@ import SearchComponent from '../../components/ui/search_component';
 import LevelComponent from '../../components/ui/level_component';
 import HiraganaListComponent from '../../components/ui/letter_component';
 import Container from '../../components/ui/container';
+import BannerAdComponent from "../../components/ads/banner_ads.tsx";
 
 const VocabularyUI = () => {
     const [keyword, setKeyword] = useState('');
@@ -102,7 +103,6 @@ const VocabularyUI = () => {
                 <LevelComponent levelCurrent={level} onLevelCurrentChange={setLevel} />
                 <HiraganaListComponent currentLetter={prefix} onLetterChange={setPrefix} />
             </Animated.View>
-
             <VocabularyList vocabs={vocabularies} scrollHandler={onScroll} />
         </Container>
     );

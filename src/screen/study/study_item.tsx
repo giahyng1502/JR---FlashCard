@@ -1,10 +1,10 @@
 import React from 'react';
 import { useColorScheme } from 'react-native'; // 👈 để xác định dark/light thực tế
-import { View, TouchableOpacity } from 'react-native';
+import {TouchableOpacity } from 'react-native';
 import { Study } from "../../models";
 import TextComponent from "../../components/ui/text_component";
 import { FONT_SIZE, PADDING, RADIUS } from "../../styles";
-import { cardColors } from "../../theme";
+import {CardColorName, cardColors} from "../../theme";
 import { useAppTheme } from "../../hooks";
 
 type Props = {
@@ -17,7 +17,7 @@ const StudyItem = ({ item }: Props) => {
 
     const currentTheme = themeMode === "system" ? systemScheme || "light" : themeMode;
 
-    const theme = cardColors[item.background_name]?.[currentTheme];
+    const theme = cardColors[item?.background_name as CardColorName]?.[currentTheme];
 
     if (!theme) {
         console.warn(`Theme "${item.background_name}" is invalid`);

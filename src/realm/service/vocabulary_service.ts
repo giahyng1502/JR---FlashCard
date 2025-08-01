@@ -1,6 +1,6 @@
 import {getStaticRealm} from "./save_data_to_local.ts";
-import {Vocabulary, VocabularyDetail} from "../../models";
-import {parseVocabularies, parseVocabularyDetail} from "../../utils/convert_vocabulary.ts";
+import { VocabularyDetail} from "../../models";
+import {parseVocabularies, parseVocabularyDetail, VocabularyListItem} from "../../utils/convert_vocabulary.ts";
 import {JLPTLevel} from "../../types";
 
 export type AdvancedSearchOptions = {
@@ -10,7 +10,7 @@ export type AdvancedSearchOptions = {
     prefix?: string;
 };
 
-export const searchVocabularyAdvanced = (options: AdvancedSearchOptions) :Vocabulary[] => {
+export const searchVocabularyAdvanced = (options: AdvancedSearchOptions) :VocabularyListItem[] => {
     try {
         const realm = getStaticRealm('vocab');
 

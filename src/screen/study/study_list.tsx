@@ -4,6 +4,7 @@ import useStudyHook from "./study_hook.ts";
 import {FlashList} from "@shopify/flash-list";
 import {Study} from "../../models";
 import StudyItem from "./study_item.tsx";
+import BannerAdComponent from "../../components/ads/banner_ads.tsx";
 
 
 const StudyList = () => {
@@ -13,7 +14,7 @@ const StudyList = () => {
         return <StudyItem item={item} />;
     }, []);
     const keyExtractor = useCallback((item: Study, index: number) => {
-        return `${item._id.toHexString()}_${index}`;
+        return `${item._id}_${index}`;
     }, []);
 
     return (
@@ -22,7 +23,11 @@ const StudyList = () => {
             renderItem={renderItem}
             keyExtractor={keyExtractor}
             estimatedItemSize={60}
+            showsVerticalScrollIndicator={false}
             ItemSeparatorComponent={() => <View style={{ height: 8 }} />}
+            ListHeaderComponent={()=>
+                <BannerAdComponent/>
+        }
         />
     );
 };

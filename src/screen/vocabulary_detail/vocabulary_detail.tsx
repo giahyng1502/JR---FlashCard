@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, ScrollView} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import {VocabularyDetailRouteProp} from '../../navigation';
 import HeaderComponent from "../../components/ui/header_component.tsx";
@@ -9,6 +9,8 @@ import TextComponent from "../../components/ui/text_component.tsx";
 import ExamplesVocabularyList from "./exam_vocab_list.tsx";
 import useVocabularyDetail from "./vocabulary_detail_hook.ts";
 import Container from "../../components/ui/container.tsx";
+import BannerAdComponent from "../../components/ads/banner_ads.tsx";
+import {BannerAdSize} from "react-native-google-mobile-ads";
 
 const VocabularyDetail = () => {
   const route = useRoute<VocabularyDetailRouteProp>();
@@ -28,11 +30,15 @@ const VocabularyDetail = () => {
           <TextComponent>{vocabulary.romaji}</TextComponent>
 
         </View>
+            <View style={{height : PADDING.SM}}/>
+            <BannerAdComponent size={BannerAdSize.LARGE_BANNER}/>
         <View style={{height : PADDING.SM}}/>
         <TextComponent size={FONT_SIZE.LG}>A.Class {vocabulary.pos}</TextComponent>
         <View style={{height : PADDING.SM}}/>
         <TextComponent size={FONT_SIZE.LG}>B.Examples</TextComponent>
         <ExamplesVocabularyList examples={vobDetail?.examples} />
+            <BannerAdComponent size={BannerAdSize.INLINE_ADAPTIVE_BANNER}/>
+            <View style={{height:PADDING.XXL}}/>
         </ScrollView>
       </Container>
   );

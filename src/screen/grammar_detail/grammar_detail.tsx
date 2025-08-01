@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import HeaderComponent from "../../components/ui/header_component.tsx";
 import {useAppTheme} from "../../hooks";
 import {useRoute} from "@react-navigation/native";
@@ -8,12 +8,13 @@ import {FONT_SIZE, PADDING, RADIUS} from "../../styles";
 import TextComponent from "../../components/ui/text_component.tsx";
 import GrammarList from "./grammar_list.tsx";
 import Container from "../../components/ui/container.tsx";
+import BannerAdComponent from "../../components/ads/banner_ads.tsx";
+import {BannerAdSize} from "react-native-google-mobile-ads";
 
 const GrammarDetail = () => {
     const {theme} = useAppTheme();
     const route = useRoute<GrammarDetailRouteProp>();
     const {grammar} = route.params
-    console.log(grammar)
     const headerComponent = useCallback(()=>{
         return (
             <>
@@ -22,6 +23,7 @@ const GrammarDetail = () => {
                 }]}>
                     <TextComponent bold size={FONT_SIZE.LG}>{grammar.title}</TextComponent>
                 </View>
+                <BannerAdComponent />
                 <TextComponent size={FONT_SIZE.LG}>
                     A . Explain
                 </TextComponent>
@@ -51,6 +53,7 @@ const GrammarDetail = () => {
                 <TextComponent size={FONT_SIZE.LG}>
                     B . Examples
                 </TextComponent>
+                <BannerAdComponent size={BannerAdSize.MEDIUM_RECTANGLE}/>
             </>
         )
     },[grammar,theme])

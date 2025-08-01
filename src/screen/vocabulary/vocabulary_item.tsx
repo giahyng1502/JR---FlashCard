@@ -14,7 +14,6 @@ type Props = {
 
 const VocabularyItem = ({ vocab ,onPress ,onPlayAudio }: Props) => {
     const { theme } = useAppTheme();
-
     return (
         <TouchableOpacity style={[styles.container, { backgroundColor: theme.primary }]}
                           onPress={() => {

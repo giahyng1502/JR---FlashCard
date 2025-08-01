@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, View, StyleSheet} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {KanjiDetailRouteProp} from "../../navigation";
 import {useKanjiDetail} from "./use_kanji_detail.ts";
@@ -9,6 +9,8 @@ import {FONT_SIZE, PADDING, RADIUS} from "../../styles";
 import TextComponent from "../../components/ui/text_component.tsx";
 import RelativeItem from "./relative_item.tsx";
 import Container from "../../components/ui/container.tsx";
+import BannerAdComponent from "../../components/ads/banner_ads.tsx";
+import {BannerAdSize} from "react-native-google-mobile-ads";
 
 const KanjiDetail = () => {
     const navigation = useNavigation();
@@ -20,7 +22,6 @@ const KanjiDetail = () => {
     return (
         <Container>
             <HeaderComponent title="Kanji Detail" isBack />
-
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{paddingBottom: 100}}
@@ -29,6 +30,8 @@ const KanjiDetail = () => {
                 <View style={[styles.kanjiBox, {backgroundColor: theme.primary}]}>
                     <TextComponent size={FONT_SIZE.XXXL}>{character}</TextComponent>
                 </View>
+
+                <BannerAdComponent size={BannerAdSize.LARGE_BANNER}/>
 
                 {/* THÔNG TIN */}
                 <TextComponent size={FONT_SIZE.LG}>
@@ -62,6 +65,8 @@ const KanjiDetail = () => {
                 {kanjiDetail?.relatedWords?.map((item, index) => (
                     <RelativeItem key={`${item.word}_${index}`} item={item} />
                 ))}
+                <BannerAdComponent size={BannerAdSize.MEDIUM_RECTANGLE}/>
+
             </ScrollView>
         </Container>
     );

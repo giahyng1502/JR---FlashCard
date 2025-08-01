@@ -15,19 +15,18 @@ type Props = {
     isSearch?: boolean;
     isBack?: boolean;
     isAdd?: boolean;
+    handleAddScreen?: () => void;
     onSearch? : ()=>void;
 };
 
-const HeaderComponent = ({title, isSearch, isBack,onSearch , isAdd}: Props) => {
+const HeaderComponent = ({title, isSearch, isBack,onSearch , isAdd,handleAddScreen}: Props) => {
     const {theme} = useAppTheme();
     const navigation = useNavigation<any>();
 
     const handleBack = () => {
         navigation.goBack();
     };
-    const handleAddScreen = () => {
-        navigation.navigate(NameScreenProp.add_data);
-    }
+
     return (
         <SafeAreaView edges={['top']} style={[styles.container]}>
             <View style={styles.inner}>
@@ -50,7 +49,9 @@ const HeaderComponent = ({title, isSearch, isBack,onSearch , isAdd}: Props) => {
                         <IconSearch color={theme.textPrimary} />
                     </TouchableOpacity>
                 ) : isAdd ? (
-                        <TouchableOpacity style={styles.icon} onPress={handleAddScreen}>
+                        <TouchableOpacity style={styles.icon} onPress={()=>{
+                            isAdd && handleAddScreen &&  handleAddScreen();
+                        }}>
                             <IconAdd color={theme.textPrimary} />
                         </TouchableOpacity>
                     ) :

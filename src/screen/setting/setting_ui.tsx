@@ -1,18 +1,19 @@
-import React, {useCallback} from 'react';
-import {View, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
+import React from 'react';
+import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import HeaderComponent from '../../components/ui/header_component.tsx';
-import { useAppTheme } from '../../hooks';
+import {useAppTheme} from '../../hooks';
 import {FONT_SIZE, MARGIN, PADDING} from '../../styles';
 import NotificationComponent from '../../components/ui/notification_component.tsx';
 import CheckBoxComponent from '../../components/ui/checkbox_component.tsx';
 import useSetting from './setting_hook.ts';
-import {Vocabulary} from '../../models';
-import {playLocalSound} from '../../configs/audio/play_audio.ts';
 import ThemeSelector from './theme_selected.tsx';
 import TextComponent from '../../components/ui/text_component.tsx';
 import SwitchThemeToggle from '../../components/ui/switch_theme.tsx';
 import Container from "../../components/ui/container.tsx";
 import SwitchLanguage from "../../components/ui/switch_language.tsx";
+import BannerAdComponent from "../../components/ads/banner_ads.tsx";
+import {BannerAdSize} from "react-native-google-mobile-ads";
+import InterstitialAdComponent from "../../components/ads/Interstitia_ads.tsx";
 
 const CHECKBOX_OPTIONS = [
     { key: 'isVI', label: 'Việt Nam' },
@@ -24,9 +25,6 @@ const CHECKBOX_OPTIONS = [
 const SettingUi = () => {
     const { theme,setThemeId } = useAppTheme();
     const { checkbox, setCheckbox } = useSetting();
-    const handlePlayAudio = useCallback((file_name : string)=>{
-        playLocalSound(file_name);
-    },[]);
     return (
         <Container>
             <HeaderComponent title={'Setting'} />
@@ -48,6 +46,7 @@ const SettingUi = () => {
                         }
                     />
                 ))}
+                <BannerAdComponent size={BannerAdSize.MEDIUM_RECTANGLE}/>
                 <TextComponent size={FONT_SIZE.LG} style={{marginVertical : MARGIN.SM}} bold>Colors</TextComponent>
                 <ThemeSelector onSelectTheme={setThemeId}/>
                 <TextComponent size={FONT_SIZE.LG} style={{marginVertical : MARGIN.SM}} bold>Theme</TextComponent>

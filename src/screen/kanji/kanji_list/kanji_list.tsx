@@ -6,6 +6,8 @@ import KanjiItem from './kanji_item';
 import {useNavigation} from "@react-navigation/native";
 import {KanjiDetailNavigationProp, NameScreenProp} from "../../../navigation";
 import {useAppTheme} from "../../../hooks";
+import BannerAdComponent from "../../../components/ads/banner_ads.tsx";
+import {BannerAdSize} from "react-native-google-mobile-ads";
 
 type Props = {
     kanjis: Kanji[];
@@ -46,6 +48,8 @@ const KanjiList: React.FC<Props> = ({
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.container}
             removeClippedSubviews={true}
+            ListHeaderComponent={<BannerAdComponent size={BannerAdSize.BANNER}/>}
+
         />
     );
 };

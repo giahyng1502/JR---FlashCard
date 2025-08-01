@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import {Grammar} from '../../models';
 import {searchAllGrammarLevels} from '../../realm/service';
-import {parseGrammar} from "../../utils";
+import {GrammarListItem, parseGrammar} from "../../utils";
 import {JLPTLevel} from "../../types";
 
 type SearchOptions = {
@@ -9,14 +8,13 @@ type SearchOptions = {
     level?: JLPTLevel;
 };
 
-export function useGrammar({keyword,level} : SearchOptions): Grammar[] {
-    const [grammars, setGrammars] = useState<Grammar[]>([]);
+export function useGrammar({keyword,level} : SearchOptions): GrammarListItem[] {
+    const [grammars, setGrammars] = useState<GrammarListItem[]>([]);
 
     useEffect(() => {
         try {
             const data = searchAllGrammarLevels({keyword, level});
-            const parsed = parseGrammar(data);
-            setGrammars(parsed);
+            setGrammars(data);
         } catch (e) {
             console.error('Lỗi khi load tất cả Kanji:', e);
         }

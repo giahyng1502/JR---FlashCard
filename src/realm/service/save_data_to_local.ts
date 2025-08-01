@@ -84,7 +84,7 @@ export const preloadAllRealms = async () => {
  */
 export const getCachedRealm = (
     type: 'grammar' | 'kanji',
-    level: string
+    level: JLPTLevel
 ): Realm => {
     const key = `${type}_${level}`;
     const realm = realmCache[key];

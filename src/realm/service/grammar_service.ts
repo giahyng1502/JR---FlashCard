@@ -1,5 +1,6 @@
 import { getCachedRealm, GRAMMAR } from "./save_data_to_local.ts";
 import { JLPTLevel } from "../../types";
+import {parseGrammar} from "../../utils";
 
 const JLPT_LEVELS: JLPTLevel[] = ['N1', 'N2', 'N3', 'N4', 'N5'];
 const FILE_NAME_GRAMMAR = "Grammar" as const;
@@ -15,7 +16,7 @@ const searchAllGrammarLevels = ({ keyword, level }: SearchOptions) => {
 
     for (const lv of searchLevels) {
         try {
-            const realm = getCachedRealm(GRAMMAR, lv || "N5");
+            const realm = getCachedRealm(GRAMMAR, lv);
 
             const matches = keyword.trim()
                 ? realm.objects(FILE_NAME_GRAMMAR).filtered(
@@ -24,21 +25,17 @@ const searchAllGrammarLevels = ({ keyword, level }: SearchOptions) => {
                 )
                 : realm.objects(FILE_NAME_GRAMMAR);
 
-
             if (matches.length > 0) {
-                results.push(
-                    ...matches.map((item: any) => ({
-                        ...item.toJSON(),
-                        level : lv,
-                    }))
-                );
+                const data = parseGrammar(Array.from(matches));
+                results.push(...data); // 👈 tránh mảng lồng mảng
             }
         } catch (err) {
-            console.warn(`⚠️ Không thể load grammar_${level}:`, err);
+            console.warn(`⚠️ Không thể load grammar_${lv}:`, err);
         }
     }
 
     return results;
 };
+
 
 export { searchAllGrammarLevels, FILE_NAME_GRAMMAR };

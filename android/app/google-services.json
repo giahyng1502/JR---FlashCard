@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "264444481623",
+    "project_id": "jr-flashcard",
+    "storage_bucket": "jr-flashcard.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264444481623:android:da2d3f0fc4c3efb3495312",
+        "android_client_info": {
+          "package_name": "com.jcard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7hyp7U6a7aDIC-0_O12zgx8i_TKYqZVo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

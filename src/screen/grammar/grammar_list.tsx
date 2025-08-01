@@ -6,6 +6,10 @@ import { Grammar } from '../../models';
 import GrammarItem from './grammar_item';
 import { useNavigation } from '@react-navigation/native';
 import { GrammarDetailNavigationProp, NameScreenProp } from '../../navigation';
+import BannerAdComponent from "../../components/ads/banner_ads.tsx";
+import {BannerAdSize} from "react-native-google-mobile-ads";
+import {NativeComponent} from "../../components/ads/native_card_ads.tsx";
+import {GrammarListItem} from "../../utils";
 
 type Props = {
     grammars: Grammar[];
@@ -28,12 +32,17 @@ const GrammarList = ({ grammars, scrollHandler }: Props) => {
         });
     }, [navigation]);
 
+
     const renderItem = useCallback(
-        ({ item }: { item: Grammar }) => (
-            <GrammarItem grammar={item} onPress={handleGrammarDetail} />
-        ),
+        ({ item }: { item: GrammarListItem }) => {
+            if ("type" in item && item.type === "native_ad") {
+                return <NativeComponent />;
+            }
+            return <GrammarItem grammar={item} onPress={handleGrammarDetail} />;
+        },
         [handleGrammarDetail]
     );
+
 
     return (
         <AnimatedFlashList
@@ -45,6 +54,8 @@ const GrammarList = ({ grammars, scrollHandler }: Props) => {
             showsVerticalScrollIndicator={false}
             onScroll={scrollHandler}
             scrollEventThrottle={16}
+            ListHeaderComponent={<BannerAdComponent size={BannerAdSize.BANNER}/>}
+
         />
     );
 };
