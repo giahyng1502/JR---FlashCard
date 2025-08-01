@@ -2,7 +2,7 @@
           xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <application
             android:name=".MainApplication"
             android:label="@string/app_name"
@@ -25,10 +25,11 @@
             </intent-filter>
         </activity>
 
-        <service
-                android:name="com.doublesymmetry.trackplayer.service.MusicService"
-                android:exported="true"
-                tools:replace="android:exported" />
+        <meta-data
+                android:name="com.google.android.gms.ads.APPLICATION_ID"
+                android:value="ca-app-pub-5898693170038678~6890871007"
+                tools:replace="android:value" />
+        />
 
     </application>
 </manifest>
