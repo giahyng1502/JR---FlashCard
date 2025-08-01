@@ -1,5 +1,7 @@
 // file: models/kanji.ts
 
+import {BSON} from "realm";
+
 type Kanji = {
     character: string,
 }
@@ -18,6 +20,8 @@ type KanjiDetail = {
     on_readings: string[],
     kun_readings: string[],
     relatedWords: RelatedWord[],
+    study_id? : number
+    _id?: BSON.ObjectId;
 }
 
 export {

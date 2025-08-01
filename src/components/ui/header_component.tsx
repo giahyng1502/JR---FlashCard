@@ -7,22 +7,27 @@ import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FONT_SIZE } from "../../styles";
 import {useAppTheme} from "../../hooks";
+import IconAdd from "../../assets/svgs/ic_add.tsx";
+import {NameScreenProp} from "../../navigation";
 
 type Props = {
     title: string;
     isSearch?: boolean;
     isBack?: boolean;
+    isAdd?: boolean;
     onSearch? : ()=>void;
 };
 
-const HeaderComponent = ({title, isSearch, isBack,onSearch }: Props) => {
+const HeaderComponent = ({title, isSearch, isBack,onSearch , isAdd}: Props) => {
     const {theme} = useAppTheme();
-    const navigation = useNavigation();
+    const navigation = useNavigation<any>();
 
     const handleBack = () => {
         navigation.goBack();
     };
-
+    const handleAddScreen = () => {
+        navigation.navigate(NameScreenProp.add_data);
+    }
     return (
         <SafeAreaView edges={['top']} style={[styles.container]}>
             <View style={styles.inner}>
@@ -44,9 +49,15 @@ const HeaderComponent = ({title, isSearch, isBack,onSearch }: Props) => {
                     <TouchableOpacity style={styles.icon} onPress={onSearch}>
                         <IconSearch color={theme.textPrimary} />
                     </TouchableOpacity>
-                ) : (
-                    <View style={styles.icon} />
-                )}
+                ) : isAdd ? (
+                        <TouchableOpacity style={styles.icon} onPress={handleAddScreen}>
+                            <IconAdd color={theme.textPrimary} />
+                        </TouchableOpacity>
+                    ) :
+                    (
+                        <View style={styles.icon} />
+                    )
+                }
             </View>
         </SafeAreaView>
     );

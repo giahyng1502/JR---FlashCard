@@ -16,7 +16,7 @@ const CheckBoxComponent = ({ label, checked, onChange } : Props) => {
     return (
         <TouchableOpacity style={styles.container} onPress={() => onChange(!checked)}>
             <View style={[styles.checkbox,{borderColor: theme.borderColor}, checked && {borderColor : theme.activeColor }]}>
-                {checked && <IconCheck color={theme.primary} />}
+                {checked && <IconCheck color={theme.activeColor} />}
             </View>
             <TextComponent>{label}</TextComponent>
         </TouchableOpacity>

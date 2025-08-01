@@ -10,14 +10,20 @@ import { useTranslation } from 'react-i18next';
 import { useAppTheme } from '../../hooks';
 import TextComponent from './text_component';
 import tinycolor from 'tinycolor2';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const options = ['vi', 'en'] as const;
 
-const SwitchLanguage = () => {
+const labelMap: Record<(typeof options)[number], string> = {
+    vi: 'Tiếng Việt',
+    en: 'English',
+};
+
+export const SwitchLanguage = () => {
     const { theme } = useAppTheme();
     const { i18n } = useTranslation();
 
-    const currentLanguage = i18n.language;
+    const currentLanguage = i18n.language as (typeof options)[number];
     const activeIndex = options.findIndex(lang => lang === currentLanguage);
     const backgroundColor = tinycolor(theme.background).darken(15).toString();
 
@@ -29,6 +35,8 @@ const SwitchLanguage = () => {
             Animated.spring(translateX, {
                 toValue: activeIndex * optionWidth.current,
                 useNativeDriver: true,
+                tension: 180,
+                friction: 20,
             }).start();
         }
     }, [activeIndex]);
@@ -39,12 +47,9 @@ const SwitchLanguage = () => {
         translateX.setValue(activeIndex * width);
     };
 
-    const getLabel = (lang: string) => {
-        switch (lang) {
-            case 'vi': return 'Tiếng Việt';
-            case 'en': return 'English';
-            default: return lang;
-        }
+    const changeLanguage = async (lang: (typeof options)[number]) => {
+        await i18n.changeLanguage(lang);
+        await AsyncStorage.setItem('language', lang);
     };
 
     return (
@@ -65,8 +70,11 @@ const SwitchLanguage = () => {
                     <TouchableOpacity
                         key={lang}
                         style={styles.option}
-                        onPress={() => i18n.changeLanguage(lang)}
+                        onPress={() => changeLanguage(lang)}
                         activeOpacity={0.8}
+                        accessible
+                        accessibilityRole="button"
+                        accessibilityLabel={`Change language to ${labelMap[lang]}`}
                     >
                         <TextComponent
                             bold={isActive}
@@ -75,7 +83,7 @@ const SwitchLanguage = () => {
                                 isActive && { color: theme.activeColor },
                             ]}
                         >
-                            {getLabel(lang)}
+                            {labelMap[lang]}
                         </TextComponent>
                     </TouchableOpacity>
                 );

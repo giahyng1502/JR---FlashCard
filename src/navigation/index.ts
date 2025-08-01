@@ -19,4 +19,5 @@ export const NameScreenProp = {
     grammar_detail: 'grammar_detail',
     main: 'main',
     vocabulary_detail : 'vocabulary_detail',
+    add_data : 'add_data',
 } as const;

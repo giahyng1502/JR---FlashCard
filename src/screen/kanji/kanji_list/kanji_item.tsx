@@ -3,6 +3,7 @@ import {Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {Kanji} from "../../../models";
 import {FONT_SIZE, RADIUS} from "../../../styles";
 import {useAppTheme} from "../../../hooks";
+import TextComponent from "../../../components/ui/text_component.tsx";
 
 type Props = {
     item: Kanji;
@@ -15,14 +16,13 @@ const KanjiItem = ({ item,onPress }: Props) => {
         <TouchableOpacity style={[styles.container,{backgroundColor : theme.primary}]} onPress={()=>{
             onPress && onPress(item.character);
         }}>
-            <Text style={styles.character}>{item.character}</Text>
+            <TextComponent size={FONT_SIZE.XL}>{item.character}</TextComponent>
         </TouchableOpacity>
     );
 };
 
 const styles = StyleSheet.create({
-    container: { padding: 16,borderRadius : RADIUS.SM,margin : 2,justifyContent : 'center',alignItems: 'center' },
-    character: { fontSize: FONT_SIZE.XL },
+    container: { padding: 16,borderRadius : RADIUS.SM,margin : 2,justifyContent : 'center',alignItems: 'center',elevation : 4 },
 });
 
 export default React.memo(KanjiItem);

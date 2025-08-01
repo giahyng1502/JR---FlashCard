@@ -11,6 +11,8 @@ export function parseVocabularies(rawList: any[]): Vocabulary[] {
         meaning_vi : raw.meaning_vi,
         pos_vi : raw.pos_vi,
         audio : raw.audio,
+        id : raw?.id,
+        study_id : raw?.study_id,
     }));
 }
 

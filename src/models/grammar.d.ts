@@ -1,3 +1,5 @@
+import {BSON} from "realm";
+
 type Grammar = {
     title: string,
     short_explanation : string,
@@ -7,6 +9,8 @@ type Grammar = {
     long_explanation_vi : string,
     formation_vi : string,
     examples : ExamplesGrammar[];
+    study_id? : number
+    _id?: BSON.ObjectId;
 }
 
 type ExamplesGrammar = {

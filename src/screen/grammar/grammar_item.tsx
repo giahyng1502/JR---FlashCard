@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
       marginVertical : MARGIN.XS,
       padding : PADDING.SM,
       borderRadius : RADIUS.MD,
-      gap : 8
+      gap : 8,
+      elevation : 4
   },
   text: {
     fontSize: 20,

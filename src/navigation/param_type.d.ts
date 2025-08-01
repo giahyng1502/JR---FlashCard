@@ -18,5 +18,6 @@ export type AppStackParamList = {
     vocabulary_detail : {
         vocab : Vocabulary
     }
+    add_data : undefined
 }
 

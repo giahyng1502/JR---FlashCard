@@ -6,7 +6,6 @@ import {FONT_SIZE, MARGIN, PADDING} from '../../styles';
 import NotificationComponent from '../../components/ui/notification_component.tsx';
 import CheckBoxComponent from '../../components/ui/checkbox_component.tsx';
 import useSetting from './setting_hook.ts';
-import VocabularyItem from '../vocabulary/vocabulary_item.tsx';
 import {Vocabulary} from '../../models';
 import {playLocalSound} from '../../configs/audio/play_audio.ts';
 import ThemeSelector from './theme_selected.tsx';
@@ -20,19 +19,6 @@ const CHECKBOX_OPTIONS = [
     { key: 'isEnglish', label: 'English' },
     { key: 'isRomaji', label: 'Romaji' },
 ] as const;
-
-const vocabulary : Vocabulary = {
-    id : 0,
-    word: '毎朝',
-    meaning: 'every morning',
-    furigana: 'まいあさ',
-    romaji: 'maiasa',
-    level: '5',
-    pos: 'Noun, Adverb (fukushi)',
-    meaning_vi: 'mỗi buổi sáng',
-    pos_vi: 'Danh từ, trạng từ (fukushi)',
-    audio: 'hungcy_0.mp3',
-};
 
 
 const SettingUi = () => {

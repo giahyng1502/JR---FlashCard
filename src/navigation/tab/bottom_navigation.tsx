@@ -2,20 +2,20 @@ import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import { BottomStackParamList} from "../param_type.d.ts";
-import IconSetting from "../../assets/svgs/ic_setting.tsx";
-import VocabularyScreen from "./vocabulary.tsx";
-import KanjiScreen from "./kanji.tsx";
-import GrammarScreen from "./grammar.tsx";
-import StudyScreen from "./study.tsx";
-import SettingScreen from "./setting.tsx";
-import {FONTS, PADDING, RADIUS, width} from "../../styles";
-import {useTranslation} from "react-i18next";
-import IconVocabulary from "../../assets/svgs/ic_vocabulary.tsx";
-import IconGrammar from "../../assets/svgs/ic_grammar.tsx";
-import IconStudy from "../../assets/svgs/icon_study.tsx";
-import IconKanji from "../../assets/svgs/ic_kanji.tsx";
-import {useAppTheme} from "../../hooks";
+import IconSetting from '../../assets/svgs/ic_setting.tsx';
+import VocabularyScreen from './vocabulary.tsx';
+import KanjiScreen from './kanji.tsx';
+import GrammarScreen from './grammar.tsx';
+import StudyScreen from './study.tsx';
+import SettingScreen from './setting.tsx';
+import {FONTS, PADDING, RADIUS, width} from '../../styles';
+import {useTranslation} from 'react-i18next';
+import IconVocabulary from '../../assets/svgs/ic_vocabulary.tsx';
+import IconGrammar from '../../assets/svgs/ic_grammar.tsx';
+import IconStudy from '../../assets/svgs/icon_study.tsx';
+import IconKanji from '../../assets/svgs/ic_kanji.tsx';
+import {useAppTheme} from '../../hooks';
+import {BottomStackParamList} from '../param_type';
 
 
 const Tab = createBottomTabNavigator<BottomStackParamList>();
@@ -28,7 +28,7 @@ const BottomNavigation = () => {
         <Tab.Navigator
             screenOptions={({route}) => ({
                 tabBarIcon: ({focused}) => {
-                    const color = focused ? theme.activeColor : theme.textSecondary
+                    const color = focused ? theme.activeColor : theme.textSecondary;
                     let IconComponent;
                     switch (route.name) {
                         case 'vocabulary':
@@ -52,9 +52,9 @@ const BottomNavigation = () => {
 
                     return (
                         <View style={{
-                            width : width/5,
+                            width : width / 5,
                             justifyContent : 'center',
-                            alignItems : 'center'
+                            alignItems : 'center',
                         }}>
                         <View
                             style={[
@@ -71,7 +71,7 @@ const BottomNavigation = () => {
                                     fontSize: 11,
                                     color: color,
                                     marginTop: 4,
-                                    fontFamily : FONTS.SEMIBOLD
+                                    fontFamily : FONTS.SEMIBOLD,
                                 }}>
                                 {t(`bottom_navigation.${route.name}`)}
                             </Text>

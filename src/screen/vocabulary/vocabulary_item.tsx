@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexShrink : 1,
         gap : 10,
+        elevation : 4,
         flexWrap: 'wrap',
         justifyContent: 'flex-end', // Căn phải từng dòng
         alignContent: 'flex-end',   // Căn phải toàn bộ nếu có nhiều dòng

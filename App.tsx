@@ -5,6 +5,13 @@ import RootNavigator from "./src/navigation/app_navigation.tsx";
 import {I18nextProvider} from "react-i18next";
 import i18n from './src/i18n';
 import {useAppTheme} from "./src/hooks";
+import {RealmProvider} from "@realm/react";
+import {
+    ExampleGrammarSchema_Study,
+    GrammarSchema_study, KanjiDetailSchema_Study,
+    RelatedWordSchema_Study, StudySchema,
+    VocabularySchema_Study
+} from "./src/realm/schema";
 
 
 function App() {
@@ -16,14 +23,28 @@ function App() {
 
 
     return (
-        <GestureHandlerRootView style={styles.container}>
-            <ThemeProvider>
-                <I18nextProvider i18n={i18n}>
-                    <StatusBar barStyle={barStyle} />
-                    <RootNavigator />
-                </I18nextProvider>
-            </ThemeProvider>
-        </GestureHandlerRootView>
+
+            <GestureHandlerRootView style={styles.container}>
+                <RealmProvider
+                    schema={[
+                        ExampleGrammarSchema_Study,
+                        VocabularySchema_Study,
+                        GrammarSchema_study,
+                        RelatedWordSchema_Study,
+                        KanjiDetailSchema_Study,
+                        StudySchema
+                    ]}
+                    schemaVersion={1}
+                >
+                <ThemeProvider>
+                    <I18nextProvider i18n={i18n}>
+                        <StatusBar barStyle={barStyle} />
+                        <RootNavigator />
+                    </I18nextProvider>
+                </ThemeProvider>
+                </RealmProvider>
+                    
+            </GestureHandlerRootView>
     );
 }
 

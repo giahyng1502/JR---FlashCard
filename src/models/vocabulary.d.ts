@@ -1,6 +1,9 @@
+import {BSON} from "realm";
+
 type Vocabulary = {
-    id : number
+    id? : number
     word : string,
+    _id?: BSON.ObjectId;
     meaning : string,
     furigana : string,
     romaji : string,
@@ -9,6 +12,7 @@ type Vocabulary = {
     meaning_vi : string,
     pos_vi : string,
     audio : string,
+    study_id? : number
 }
 
 type Segment = {
