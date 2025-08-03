@@ -16,14 +16,15 @@ import Animated, {
     withSpring,
     runOnUI,
 } from 'react-native-reanimated';
+import {useTranslation} from "react-i18next";
 
-const options = ['Light', 'Dark', 'System'] as const;
+const options = ['light', 'dark', 'system'] as const;
 
 const SwitchThemeToggle = () => {
     const { themeMode, setThemeMode, theme } = useAppTheme();
     const activeIndex = options.findIndex((o) => o.toLowerCase() === themeMode);
     const backgroundColor = tinycolor(theme.background).darken(15).toString();
-
+    const {t} = useTranslation();
     const optionWidth = useRef(0);
     const translateX = useSharedValue(0);
 
@@ -78,7 +79,7 @@ const SwitchThemeToggle = () => {
                                 isActive && { color: theme.activeColor },
                             ]}
                         >
-                            {opt}
+                            {t(`setting.${opt}`)}
                         </TextComponent>
                     </TouchableOpacity>
                 );

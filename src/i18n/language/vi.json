@@ -5,5 +5,47 @@
     "grammar" : "Ngữ pháp",
     "study" : "Học tập",
     "setting" : "Cài đặt"
-  }
+  },
+  "premium": {
+    "premium_title": "Nâng cấp Premium",
+    "premium_description": "• Không quảng cáo\n• Truy cập toàn bộ nội dung\n• Lên lịch học, ôn tập hiệu quả",
+    "monthly_title": "30 ngày không quảng cáo",
+    "monthly_desc": "Trải nghiệm 30 ngày với đầy đủ các tính năng",
+    "yearly_title": "1 năm không quảng cáo",
+    "yearly_desc": "Tiết kiệm hơn với gói 12 tháng đầy đủ tính năng",
+    "success_title": "Thành công",
+    "success_message": "Cảm ơn bạn đã nâng cấp!",
+    "package_not_found": "Không tìm thấy gói. Vui lòng thử lại sau.",
+    "payment_error": "Lỗi thanh toán",
+    "restore": "Khôi phục",
+    "terms": "Điều khoản",
+    "privacy": "Chính sách"
+  },
+  "add_data": {
+    "screen_title": "Thêm Danh Sách",
+    "example": "Ví dụ",
+    "title_label": "Tiêu đề",
+    "title_placeholder": "Tên danh sách (vd. N5 Kanji)",
+    "description_label": "Mô tả",
+    "description_placeholder": "Vd. 100 từ N5 sử dụng hàng ngày",
+    "type_label": "Loại nội dung",
+    "color_label": "Màu nền",
+    "button_text": "Bắt đầu học"
+  },
+  "setting": {
+    "notification": "Thông báo",
+    "color": "Màu sắc",
+    "theme": "Giao diện",
+    "language": "Ngôn ngữ",
+    "terms": "Điều khoản sử dụng",
+    "privacy": "Chính sách riêng tư",
+    "contact": "Liên hệ",
+    "vi": "Tiếng Việt",
+    "en": "Tiếng Anh",
+    "romaji": "Romaji",
+    "light": "Sáng",
+    "dark": "Tối",
+    "system": "Hệ thống"
+}
+
 }

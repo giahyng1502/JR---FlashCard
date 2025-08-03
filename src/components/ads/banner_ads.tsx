@@ -12,7 +12,7 @@ const BannerAdComponent = ({size = BannerAdSize.BANNER} : Props) => {
     return (
         <View style={{width : '100%',alignItems : 'center',padding : 15}}>
             <BannerAd
-                unitId={TestIds.BANNER}
+                unitId={unitId}
                 size={size}
                 requestOptions={{
                     requestNonPersonalizedAdsOnly: true,

@@ -24,7 +24,6 @@ const TextComponent: React.FC<Props> = ({
 
     return (
         <Text
-            selectable={true}
             {...rest}
             style={[
                 {

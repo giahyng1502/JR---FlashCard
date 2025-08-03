@@ -5,5 +5,49 @@
     "grammar" : "Grammar",
     "study" : "Study",
     "setting" : "Settings"
+  },
+
+  "premium": {
+    "premium_title": "Upgrade to Premium",
+    "premium_description": "• No ads\n• Access all content\n• Smart learning schedule",
+    "monthly_title": "30 days no ads",
+    "monthly_desc": "Experience full features for 30 days",
+    "yearly_title": "1 year no ads",
+    "yearly_desc": "Save more with 12-month full access",
+    "success_title": "Success",
+    "success_message": "Thanks for upgrading!",
+    "package_not_found": "Package not found. Please try again later.",
+    "payment_error": "Payment Error",
+    "restore": "Restore",
+    "terms": "Terms",
+    "privacy": "Privacy"
+  },
+  "add_data": {
+    "screen_title": "Add List",
+    "example": "Example",
+    "title_label": "Title",
+    "title_placeholder": "Study name (e.g. N5 Kanji)",
+    "description_label": "Description",
+    "description_placeholder": "E.g. 100 daily-use N5 words",
+    "type_label": "Type",
+    "color_label": "Colors",
+    "button_text": "Let’s Go"
+  },
+  "setting": {
+    "screen_title": "Settings",
+    "notification": "Notification",
+    "color": "Colors",
+    "theme": "Theme",
+    "language": "Language",
+    "terms": "Terms of Use",
+    "privacy": "Privacy Policy",
+    "contact": "Contact Us",
+    "vi": "Vietnamese",
+    "en": "English",
+    "romaji": "Romaji",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
   }
+
 }

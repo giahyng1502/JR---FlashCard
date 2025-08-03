@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
   },
     searchInput: {
       height: 40,
+        flex : 1,
     }
 });
 

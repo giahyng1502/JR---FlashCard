@@ -17,6 +17,8 @@ import {BSON} from "realm";
 import {NameScreenProp} from "../../navigation";
 import {useVisitCounter} from "../../hooks/use_visit.ts";
 import {NavigationContainerProps, useNavigation} from "@react-navigation/native";
+import {darkenColor} from "../../utils";
+import {useTranslation} from "react-i18next";
 
 
 
@@ -26,7 +28,7 @@ const AddDataScreen = () => {
   const [description, setDescription] = useState<string>("");
   const [type, setType] = useState<Type>("vocabulary")
     const { increment} = useVisitCounter();
-
+    const { t } = useTranslation();
   const item = {
       _id: new BSON.ObjectId(),
     title: title ? title : "N5 Kanji - Basic Characters",
@@ -41,7 +43,7 @@ const AddDataScreen = () => {
   const {addDataStudy} = useAddDataHook();
 
   const {theme,themeMode} = useAppTheme();
-    const effectiveMode = getEffectiveThemeMode(themeMode);
+
     useEffect(() => {
         increment(NameScreenProp.add_data);
     }, []);
@@ -50,27 +52,27 @@ const AddDataScreen = () => {
         navigation.goBack();
     };
 
-    const darken = effectiveMode === "dark" ? -15 : 15;
+    const background_color = darkenColor(themeMode,theme.primary);
     return  (
       <Container>
         <HeaderComponent title={"Add List"} isBack/>
         <ScrollView showsVerticalScrollIndicator={false} style={{flex : 1}}>
-        <TextComponent color={theme.textSecondary} selectable={false}>Example</TextComponent>
+            <TextComponent size={FONT_SIZE.SM} color={theme.textSecondary}>{t('add_data.example')}</TextComponent>
         <StudyItem item={item}/>
-        <TextComponent selectable={false} size={FONT_SIZE.SM} color={theme.textSecondary}>Title</TextComponent>
-        <InputComponent value={title} onChangeText={setTitle} placeholder="Study name (e.g. N5 Kanji)" />
+            <TextComponent size={FONT_SIZE.SM} color={theme.textSecondary}>{t('add_data.title_label')}</TextComponent>
+        <InputComponent value={title} onChangeText={setTitle}  placeholder={t('add_data.title_placeholder')}  />
 
-        <TextComponent selectable={false} size={FONT_SIZE.SM} color={theme.textSecondary}>Description</TextComponent>
-        <InputComponent value={description} onChangeText={setDescription} placeholder="E.g. 100 daily-use N5 words"  />
-        <TextComponent selectable={false} size={FONT_SIZE.SM} color={theme.textSecondary}>Type</TextComponent>
+        <TextComponent size={FONT_SIZE.SM} color={theme.textSecondary}>{t('add_data.description_label')}</TextComponent>
+        <InputComponent value={description} onChangeText={setDescription} placeholder={t('add_data.description_placeholder')}  />
+        <TextComponent size={FONT_SIZE.SM} color={theme.textSecondary}>{t('add_data.type_label')}</TextComponent>
         <SelectTypeStudent currentSelect={type} setCurrentSelect={setType}/>
 
-        <TextComponent selectable={false} size={FONT_SIZE.SM} color={theme.textSecondary}>Colors</TextComponent>
+        <TextComponent size={FONT_SIZE.SM} color={theme.textSecondary}>{t('add_data.color_label')}</TextComponent>
             <ThemeSelectorStudy onSelectTheme={setBackgroundColor} />
 
 
         <TouchableOpacity style={[styles.button,{
-          backgroundColor: tinycolor(theme.primary).darken(darken).toString(),
+          backgroundColor: background_color,
         }]}
         onPress={()=>{
             addDataStudy({
@@ -84,7 +86,7 @@ const AddDataScreen = () => {
             handleBack();
         }}
         >
-          <TextComponent bold>Let’s Go</TextComponent>
+          <TextComponent bold>{t('add_data.button_text')}</TextComponent>
         </TouchableOpacity>
         </ScrollView>
 
@@ -100,10 +102,6 @@ const styles = StyleSheet.create({
     marginTop : MARGIN.MD,
     borderRadius : RADIUS.MD,
     elevation : 4
-  },
-  text: {
-    fontSize: 20,
-    color: 'black',
   },
 });
 
