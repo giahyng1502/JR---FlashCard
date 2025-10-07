@@ -1,97 +1,70 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 🇯🇵 Nihongo Mate – Flashcard JP
 
-# Getting Started
+> Ứng dụng học **từ vựng & ngữ pháp tiếng Nhật JLPT (N5 → N1)** qua flashcard, quiz và nghe phát âm chuẩn.  
+> Xây dựng bằng **React Native CLI + TypeScript** – nhanh, mượt và hỗ trợ học offline. ⚛️📱
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+<p align="center">
+  <img src="./src/assets/1.png" width="30%" />
+  <img src="./src/assets/2.png" width="30%" />
+  <img src="./src/assets/3.png" width="30%" />
+</p>
+<p align="center">
+  <img src="./src/assets/4.png" width="30%" />
+  <img src="./src/assets/5.png" width="30%" />
+  <img src="./src/assets/6.png" width="30%" />
+</p>
+<p align="center">
+  <img src="./src/assets/7.png" width="30%" />
+  <img src="./src/assets/8.png" width="30%" />
+  <img src="./src/assets/9.png" width="30%" />
+</p>
 
-## Step 1: Start Metro
+<p align="center">
+  <img src="./src/assets/10.png" width="30%" />
+  <img src="./src/assets/11.png" width="30%" />
+</p>
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+---
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## 🌟 Giới thiệu
 
-```sh
-# Using npm
-npm start
+**Nihongo Mate** là trợ lý học tiếng Nhật thân thiện dành cho người Việt.  
+Bạn có thể học mọi lúc mọi nơi — chỉ cần mở app, lật flashcard, nghe ví dụ và làm quiz củng cố kiến thức.  
+Ứng dụng được thiết kế với mục tiêu: **“Nhẹ, đẹp, dễ dùng và học vui.”**
 
-# OR using Yarn
-yarn start
-```
+---
 
-## Step 2: Build and run your app
+## 🎴 Tính năng nổi bật
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+- 🈶 **Từ vựng JLPT N5 → N1** (18 000 + từ) có nghĩa tiếng Việt  
+- 🗣️ **Phát âm chuẩn Nhật Bản** (TTS + audio thật)  
+- 🧩 **Ngữ pháp có ví dụ song ngữ** + link audio  
+- 🧠 **Quiz trắc nghiệm** luyện nhanh sau mỗi chủ đề  
+- 🪄 **Flashcard Animation mượt** bằng Reanimated 3  
+- 🌗 **Dark / Light / Custom Theme** 16 màu khác nhau  
+- 📦 **Tải âm thanh + dữ liệu offline** (Realm DB + Cloudflare R2)  
+- 🏆 **Gói VIP Subscription** (RevenueCat API verify server side)  
+- 🌍 **Đa ngôn ngữ** (vi, en, ja, ko, fr, de, es, pt, ru, zh, th, id, ms, hi)  
+- 🔔 **Thông báo ôn tập hằng ngày + đồng bộ progress**
 
-### Android
+---
 
-```sh
-# Using npm
-npm run android
+## 🧱 Công nghệ chính
 
-# OR using Yarn
-yarn android
-```
+| Nhóm | Công nghệ |
+|------|------------|
+| **UI/UX** | React Native CLI, TypeScript, FlashList, Reanimated 3, Gesture Handler, Lottie |
+| **Dữ liệu** | Realm DB (offline sync), Cloudflare R2, JSON assets |
+| **API** | Node.js + Express + Redis cache |
+| **Thanh toán VIP** | RevenueCat SDK / REST API |
+| **Build & DevOps** | Fastlane, Gradle, CocoaPods, Xcode, Android Studio |
+| **Localization** | i18next + JSON translations |
 
-### iOS
+---
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+## ⚙️ Cài đặt và chạy
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+### 1️⃣ Clone dự án
+```bash
+git https://github.com/giahyng1502/JR---FlashCard
+cd nihongo-mate
