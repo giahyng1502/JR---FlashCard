@@ -57,7 +57,7 @@ Bạn có thể học mọi lúc mọi nơi — chỉ cần mở app, lật flas
 | **Dữ liệu** | Realm DB (offline sync), Cloudflare R2, JSON assets |
 | **API** | Node.js + Express + Redis cache |
 | **Thanh toán VIP** | RevenueCat SDK / REST API |
-| **Build & DevOps** | Fastlane, Gradle, CocoaPods, Xcode, Android Studio |
+| **Build & DevOps** | Gradle, CocoaPods, Xcode, Android Studio |
 | **Localization** | i18next + JSON translations |
 
 ---
